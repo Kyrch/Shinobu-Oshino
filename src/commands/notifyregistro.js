@@ -64,8 +64,5 @@ module.exports = {
             embeds: [embed],
             components: [row1, row2]
         })
-
-        const channelEdit = client.channels.cache.find(a => a.id == '854065444812881960')
-        channelEdit.messages.fetch('945499723962408980').then(msg => msg.edit({ embeds: [embed], components: [row1, row2, row3, row4] }))
     }
 }
