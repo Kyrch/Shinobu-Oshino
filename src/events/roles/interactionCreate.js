@@ -154,4 +154,4 @@ Pegue o cargo <@&928784860217237514> em <#854065444812881960>.
 Sim, analise os exemplos e mande para alguém da <@&775060539885092914>.
 
 **• Qual o período entre as indicações?**
-Poderá variar de 3 a 7 dias.`
+No mínimo 3 dias.`
