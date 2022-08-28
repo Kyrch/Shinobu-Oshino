@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
 const ee = require('../../json/embed.json');
 const { searchAPI, searchMedia } = require('../functions/anilist');
 
@@ -11,11 +10,11 @@ module.exports = {
             .setName('tipo')
             .setDescription('selecione o tipo de pesquisa')
             .setRequired(true)
-            .addChoice('Anime', 'anime')
-            .addChoice('Character', 'character')
-            .addChoice('Mangá', 'manga')
-            .addChoice('Staff', 'staff')
-            .addChoice('User', 'user'))
+            .addChoices({ name: 'Anime', value: 'anime' },
+                { name: 'Character', value: 'character' },
+                { name: 'Mangá', value: 'manga' },
+                { name: 'Staff', value: 'staff' },
+                { name: 'User', value: 'user' }))
         .addStringOption(option => option
             .setName('pesquisa')
             .setDescription('digite o que deseja buscar')
@@ -23,8 +22,8 @@ module.exports = {
 
     async execute(interaction) {
 
-        const type = interaction.options.getString('tipo')
-        const query = interaction.options.getString('pesquisa')
+        const type = interaction.options.get('tipo').value
+        const query = interaction.options.get('pesquisa').value
 
         if (type == 'anime' || type == 'manga') {
             results = await searchMedia(query, type.toUpperCase())
@@ -46,14 +45,14 @@ module.exports = {
             let name = `${search.name?.first} ${search.name?.last}`
             let idade = search.age || "Não revelado"
             let gender = gendersDefault[search.gender] || "Não revelado"
-            var embed = new MessageEmbed()
+            var embed = new EmbedBuilder()
                 .setColor(ee.color)
                 .setTitle(`${name}`)
                 .setDescription(`[${name}](${search.siteUrl})\n\n**Idade:** ${idade}\n**Gênero:** ${gender}`)
-                .addField('Favoritos', `${search.favourites}`)
+                .addFields([{ name: 'Favoritos', value: `${search.favourites}` }])
                 .setImage(`${search.image?.large}`)
 
-            var embed2 = new MessageEmbed()
+            var embed2 = new EmbedBuilder()
                 .setColor(ee.color)
                 .setDescription(`${search.description.replace(/~!/g, "||").replace(/!~/g, "||")}`)
                 .setTimestamp()
@@ -69,7 +68,7 @@ module.exports = {
         }
 
         if (type == 'staff') {
-            var embed = new MessageEmbed()
+            var embed = new EmbedBuilder()
                 .setColor(ee.color)
                 .setTitle(`${search.name?.first} ${search.name?.last}`)
                 .setDescription(`[${search.name?.first} ${search.name?.last}](${search.siteUrl})\n\n${search.description}`)
@@ -80,13 +79,13 @@ module.exports = {
         }
 
         if (type == 'user') {
-            var embed = new MessageEmbed()
+            var embed = new EmbedBuilder()
                 .setColor(ee.color)
                 .setTitle(`${search.name}`)
                 .setDescription(`[${search.name}](${search.siteUrl})`)
                 .setImage(`${search.avatar?.large}`)
-                .addField("Minutos Assistidos", `${search.statistics?.anime?.minutesWatched}`)
-                .addField("Capítulos Lidos", `${search.statistics?.manga?.chaptersRead}`)
+                .addFields([{ name: "Minutos Assistidos", value: `${search.statistics?.anime?.minutesWatched}` }])
+                .addFields([{ name: "Capítulos Lidos", value: `${search.statistics?.manga?.chaptersRead}` }])
                 .setTimestamp()
                 .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
 
@@ -121,7 +120,7 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
     let meanScore = pe.slice(page - 1, page).map(a => a.meanScore)
 
 
-    let embed = new MessageEmbed()
+    let embed = new EmbedBuilder()
         .setColor(ee.color)
         .setTitle(`${titleRomaji} - Página ${page}/${pe.length}`)
         .setDescription(`[${titleEnglish}](${url}) (${format})`)
@@ -135,42 +134,42 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
         FALL: 'Fall'
     }
 
-    embed.addField('Status', `${status}`, false)
-    embed.addField('Início', `${startDate}`, true)
-    embed.addField('Fim', `${endDate}`, true)
-    embed.addField('Season', `${seasonDefault[season]}`, true)
-    embed.addField('Favoritos', `${favourites}`, true)
+    embed.addFields([{ name: 'Status', value: `${status}`, inline: false }])
+    embed.addFields([{ name: 'Início', value: `${startDate}`, inline: true }])
+    embed.addFields([{ name: 'Fim', value: `${endDate}`, inline: true }])
+    embed.addFields([{ name: 'Season', value: `${seasonDefault[season]}`, inline: true }])
+    embed.addFields([{ name: 'Favoritos', value: `${favourites}`, inline: true }])
 
     if (type == 'anime') {
-        embed.addField('Episódios', `${episodes}`, true)
+        embed.addFields([{ name: 'Episódios', value: `${episodes}`, inline: true }])
     } else if (type == 'manga') {
-        embed.addField('Capítulos', `${chapters}`, true)
-        embed.addField('Volumes', `${volumes}`, true)
+        embed.addFields([{ name: 'Capítulos', value: `${chapters}`, inline: true }])
+        embed.addFields([{ name: 'Volumes', value: `${volumes}`, inline: true }])
     }
 
-    embed.addField('Gêneros', `${genres}`, false)
-    embed.addField('MeanScore', `${meanScore}`, true)
+    embed.addFields([{ name: 'Gêneros', value: `${genres}`, inline: false }])
+    embed.addFields([{ name: 'MeanScore', value: `${meanScore}`, inline: true }])
 
-    const row = new MessageActionRow().addComponents(
-        new MessageButton()
+    const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
             .setCustomId(`${ID}fback`)
             .setEmoji('⏪')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
-        new MessageButton()
+        new ButtonBuilder()
             .setCustomId(`${ID}back`)
             .setEmoji('◀️')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
-        new MessageButton()
+        new ButtonBuilder()
             .setCustomId(`${ID}next`)
             .setEmoji('▶️')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length),
-        new MessageButton()
+        new ButtonBuilder()
             .setCustomId(`${ID}fnext`)
             .setEmoji('⏩')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length)
     )
 

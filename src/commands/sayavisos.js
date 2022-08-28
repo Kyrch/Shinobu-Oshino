@@ -1,4 +1,4 @@
-const { Permissions } = require('discord.js');
+const { PermissionsBitField } = require('discord.js');
 
 module.exports = {
     name: 'sayavisos',
@@ -11,7 +11,7 @@ module.exports = {
             attachments
         } = message
 
-        const adm = Permissions.FLAGS.ADMINISTRATOR
+        const adm = PermissionsBitField.Flags.Administrator
 
         if (!member.permissions.has(adm)) return
 

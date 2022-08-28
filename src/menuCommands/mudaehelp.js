@@ -7,9 +7,10 @@ module.exports = {
     },
     async execute(interaction) {
 
-        const message = interaction.options.getMessage('message')
-        const type = message.embeds[0].author.name.split(' ')
-        var args = String(message.embeds[0].description)
+        const message = interaction.options._hoistedOptions[0].message
+        const type = message.embeds[0]?.data.author?.name?.toLowerCase().split(' ')
+        if (!type) return
+        var args = String(message.embeds[0].data.description)
 
         if (type.includes('disablelist')) {
             var separator = args.split('\n\n')

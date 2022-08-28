@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
 const ee = require('../../json/embed.json');
 const { users } = require('../../json/config.json');
 
@@ -14,17 +14,17 @@ module.exports = {
 
         if (!users.includes(member.id)) return
 
-        let embed = new MessageEmbed()
-            .setColor(`${ee.color}`)
+        let embed = new EmbedBuilder()
+            .setColor(ee.color)
             .setDescription(`${description}`)
 
 
-        let row = new MessageActionRow()
+        let row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setEmoji('🚀')
                     .setLabel('Seja Booster')
-                    .setStyle('LINK')
+                    .setStyle(ButtonStyle.Link)
                     .setURL('https://support.discord.com/hc/pt-br/articles/360028038352-Server-Boosting-')
             )
 

@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
 const ee = require('../../json/embed.json');
 const { users } = require('../../json/config.json');
 
@@ -16,88 +16,88 @@ module.exports = {
 
         if (args[0] == '1') {
 
-            let row1 = new MessageActionRow()
+            let row1 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('boku-no-hero')
                         .setEmoji('🦸')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('boku-no-pico')
                         .setEmoji('🍨')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('chainsaw-man')
                         .setEmoji('🪚')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('youjitsu')
                         .setEmoji('📚')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row2 = new MessageActionRow()
+            let row2 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('code-geass')
                         .setEmoji('♟️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('cowboy-bebop')
                         .setEmoji('🚀')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('death-note')
                         .setEmoji('📓')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('detective-conan')
                         .setEmoji('🕵️‍♂️')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row3 = new MessageActionRow()
+            let row3 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('dragon-ball')
                         .setEmoji('🌀')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('evangelion')
                         .setEmoji('👾')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('fate')
                         .setEmoji('<:tohsakacool:775217629580754984>')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('fruits-basket')
                         .setEmoji('🧺')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row4 = new MessageActionRow()
+            let row4 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('fullmetal')
                         .setEmoji('🧪')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('gintama')
                         .setEmoji('👘')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('grand-blue')
                         .setEmoji('🏊‍♂️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('faqanimes1')
                         .setEmoji('❔')
-                        .setStyle('PRIMARY'),
+                        .setStyle(ButtonStyle.Primary),
                 );
 
-            let embed = new MessageEmbed()
-                .setColor(`${ee.color}`)
+            let embed = new EmbedBuilder()
+                .setColor(ee.color)
                 .setDescription(`${descriptionMsg1}`)
 
             channel.send({
@@ -108,88 +108,88 @@ module.exports = {
 
         if (args[0] == '2') {
 
-            let row1 = new MessageActionRow()
+            let row1 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('gurren-lagann')
                         .setEmoji('🤖')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('haikyuu')
                         .setEmoji('🏐')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('houseki-no-kuni')
                         .setEmoji('💎')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('hunter-x-hunter')
                         .setEmoji('⛓️')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row2 = new MessageActionRow()
+            let row2 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('jojo')
                         .setEmoji('💪')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('jujutsu-kaisen')
                         .setEmoji('👁️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('kaguya-sama')
                         .setEmoji('💖')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('kimetsu-no-yaiba')
                         .setEmoji('🌊')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row3 = new MessageActionRow()
+            let row3 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('k-on')
                         .setEmoji('🎸')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('konosuba')
                         .setEmoji('🌟')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('love-live')
                         .setEmoji('🎤')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('madoka')
                         .setEmoji('👧')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row4 = new MessageActionRow()
+            let row4 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('mob')
                         .setEmoji('😐')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('monogatari')
                         .setEmoji('✂️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('monster')
                         .setEmoji('<:gun2:775211091822903296>')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('faqanimes2')
                         .setEmoji('❔')
-                        .setStyle('PRIMARY'),
+                        .setStyle(ButtonStyle.Primary),
                 );
 
-            let embed = new MessageEmbed()
-                .setColor(`${ee.color}`)
+            let embed = new EmbedBuilder()
+                .setColor(ee.color)
                 .setDescription(`${descriptionMsg2}`)
 
 
@@ -201,88 +201,88 @@ module.exports = {
 
         if (args[0] == '3') {
 
-            let row1 = new MessageActionRow()
+            let row1 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('mushoku-tensei')
                         .setEmoji('🔮')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('naruto')
                         .setEmoji('🍃')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('one-piece')
                         .setEmoji('🏴‍☠️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('oregairu')
                         .setEmoji('💜')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row2 = new MessageActionRow()
+            let row2 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('one-punch-man')
                         .setEmoji('👊')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('oshi-no-ko')
                         .setEmoji('🎭')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('re-zero')
                         .setEmoji('☠️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('sangatsu-no-lion')
                         .setEmoji('🦁')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row3 = new MessageActionRow()
+            let row3 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('shingeki-no-kyojin')
                         .setEmoji('🛡️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('spy-x-family')
                         .setEmoji('🕴🏻')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('steins-gate')
                         .setEmoji('⏱️')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('tokyo-ghoul')
                         .setEmoji('<:kaneki:775469143343366164>')
-                        .setStyle('SECONDARY'),
+                        .setStyle(ButtonStyle.Secondary),
                 );
 
-            let row4 = new MessageActionRow()
+            let row4 = new ActionRowBuilder()
                 .addComponents(
-                    new MessageButton()
+                    new ButtonBuilder()
                         .setCustomId('tower-of-god')
                         .setEmoji('🗼')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('vinland-saga')
                         .setEmoji('🚤')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('neverland')
                         .setEmoji('🧒')
-                        .setStyle('SECONDARY'),
-                    new MessageButton()
+                        .setStyle(ButtonStyle.Secondary),
+                    new ButtonBuilder()
                         .setCustomId('faqanimes3')
                         .setEmoji('❔')
-                        .setStyle('PRIMARY'),
+                        .setStyle(ButtonStyle.Primary),
                 );
 
-            let embed = new MessageEmbed()
-            .setColor(`${ee.color}`)
+            let embed = new EmbedBuilder()
+            .setColor(ee.color)
                 .setDescription(`${descriptionMsg3}`)
 
             channel.send({

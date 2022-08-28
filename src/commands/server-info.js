@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder, ChannelType } = require("discord.js");
 const ee = require('../../json/embed.json');
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
             guildId
         } = message
 
-        if (channel.type == "dm") return
+        if (channel.type == ChannelType.DM) return
         if (channel.id != '775086769896554503') return channel.send(`Comando restrito a <#775086769896554503>`)
 
         if (args.length !== 0) return;
@@ -25,11 +25,10 @@ module.exports = {
 
         const membersOnline = guild.members.cache.filter(member => member.status != 'offline').size;
 
-        const channelText = guild.channels.cache.filter(channel => channel.type == "GUILD_TEXT").size;
-        const channelNews = guild.channels.cache.filter(channel => channel.type == "GUILD_NEWS").size;
-        const channelStore = guild.channels.cache.filter(channel => channel.type == "GUILD_STORE").size;
-        const channelVoice = guild.channels.cache.filter(channel => channel.type == "GUILD_VOICE").size;
-        const channelStage = guild.channels.cache.filter(channel => channel.type == "GUILD_STAGE_VOICE").size;
+        const channelText = guild.channels.cache.filter(channel => channel.type == ChannelType.GuildText).size;
+        const channelNews = guild.channels.cache.filter(channel => channel.type == ChannelType.GuildNews).size;
+        const channelVoice = guild.channels.cache.filter(channel => channel.type == ChannelType.GuildVoice).size;
+        const channelStage = guild.channels.cache.filter(channel => channel.type == ChannelType.GuildStageVoice).size;
 
         const features = guild.features.sort();
         let nowFeatures = []
@@ -59,7 +58,7 @@ module.exports = {
         const text = channelText + channelNews
         const cvoice = channelVoice + channelStage
 
-        const exampleEmbed = new MessageEmbed()
+        const exampleEmbed = new EmbedBuilder()
             .setColor('#58a0e7')
             .setAuthor({ name: `${guild.name}`, iconURL: `${avatarHere}` })
             .setThumbnail(avatarHere)

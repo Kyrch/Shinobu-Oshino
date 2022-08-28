@@ -1,6 +1,7 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { ButtonBuilder, ActionRowBuilder, EmbedBuilder } = require("discord.js");
 const ee = require('../../json/embed.json');
 const { users } = require('../../json/config.json');
+const { ButtonStyle } = require('discord.js');
 
 module.exports = {
     name: 'faq',
@@ -14,22 +15,22 @@ module.exports = {
 
         if (!users.includes(member.id)) return
 
-        let embed = new MessageEmbed()
-            .setColor(`${ee.color}`)
+        let embed = new EmbedBuilder()
+            .setColor(ee.color)
             .setDescription(`${description}`)
 
-        let row = new MessageActionRow()
+        let row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId('faqspoiler')
                     .setEmoji('🚫')
                     .setLabel('Spoilers')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('faqindicacoes')
                     .setEmoji('💭')
                     .setLabel('Indicações')
-                    .setStyle('SECONDARY')
+                    .setStyle(ButtonStyle.Secondary)
             )
 
 

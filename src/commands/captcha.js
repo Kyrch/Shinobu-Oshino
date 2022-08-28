@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
 const ee = require('../../json/embed.json');
 const { users } = require('../../json/config.json');
 
@@ -14,19 +14,19 @@ module.exports = {
         
         if (!users.includes(member.id)) return
 
-        let embedCaptcha = new MessageEmbed()
+        let embedCaptcha = new EmbedBuilder()
             .setColor(ee.color)
             .setTitle("Captcha")
             .setDescription('🔐 Clique no botão abaixo para realizar o captcha.')
             .setTimestamp()
             .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
 
-        let button = new MessageActionRow()
+        let button = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId('captcha')
                     .setEmoji('🔐')
-                    .setStyle('PRIMARY')
+                    .setStyle(ButtonStyle.Primary)
             )
 
         channel.send({ embeds: [embedCaptcha], components: [button] })

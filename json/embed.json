@@ -1,5 +1,5 @@
 {
-    "color": "#ffce00",
+    "color": [255, 206, 0],
     "colorAnime": "#ffffff",
     "colorManga": "#ffffff",
     "colorCharacter": "#ffffff",

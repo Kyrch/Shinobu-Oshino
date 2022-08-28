@@ -1,26 +1,30 @@
 {
-  "name": "terra-do-nunca",
+  "name": "shinobu",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kyrch/Shinobu-Oshino.git"
+  },
   "author": "Kyrch",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kyrch/Shinobu-Oshino/issues"
+  },
+  "homepage": "https://github.com/Kyrch/Shinobu-Oshino#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
-    "@discordjs/rest": "^0.3.0",
-    "@discordjs/voice": "^0.8.0",
     "@haileybot/captcha-generator": "^1.7.0",
-    "axios": "^0.26.1",
-    "discord-api-types": "^0.27.2",
-    "discord-together": "^1.3.3",
-    "discord.js": "^13.6.0",
+    "axios": "^0.27.2",
+    "discord-together": "^1.3.31",
+    "discord.js": "^14.2.0",
     "dotenv": "^16.0.1",
     "graphql-request": "^4.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.19"
   }
 }

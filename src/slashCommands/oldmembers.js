@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
 const ee = require('../../json/embed.json');
 
 module.exports = {
@@ -11,6 +10,7 @@ module.exports = {
         const list = new Set()
         const list2 = new Set()
         const col = interaction.guild.members.cache.mapValues(user => user.joinedAt)
+        console.log(interaction.guild.members)
 
         for (const [k, v] of col) {
             let array = { id: k, joined: v }
@@ -27,7 +27,6 @@ module.exports = {
             }
             return 0
         })
-
 
         let i = 0
         for (let k = 0; k < 10; k++) {
@@ -142,34 +141,34 @@ lis = async (listMsg, pe, page, ID, interaction) => {
         var avatar = avatarVerify
     }
 
-    let embed = new MessageEmbed()
-        .setColor(`${ee.color}`)
+    let embed = new EmbedBuilder()
+        .setColor(ee.color)
         .setAuthor({ name: `${user.tag}`, iconURL: `${avatar}` })
         .setTitle(`Old Members - Page ${page}/${pe.length}`)
         .setDescription(`${top} - <@!${id}>: ${join}\n${top2} - <@!${id2}>: ${join2}\n${top3} - <@!${id3}>: ${join3}\n${top4} - <@!${id4}>: ${join4}\n${top5} - <@!${id5}>: ${join5}\n${top6} - <@!${id6}>: ${join6}\n${top7} - <@!${id7}>: ${join7}\n${top8} - <@!${id8}>: ${join8}\n${top9} - <@!${id9}>: ${join9}\n${top10} - <@!${id10}>: ${join10}`)
         .setTimestamp()
         .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
 
-    const row = new MessageActionRow().addComponents(
-        new MessageButton()
+    const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
             .setCustomId(`${ID}fback`)
             .setEmoji('⏪')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
-        new MessageButton()
+        new ButtonBuilder()
             .setCustomId(`${ID}back`)
             .setEmoji('◀️')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
-        new MessageButton()
+        new ButtonBuilder()
             .setCustomId(`${ID}next`)
             .setEmoji('▶️')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length),
-        new MessageButton()
+        new ButtonBuilder()
             .setCustomId(`${ID}fnext`)
             .setEmoji('⏩')
-            .setStyle('SECONDARY')
+            .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length)
     )
 

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('discord.js');
 const { DiscordTogether } = require('discord-together');
 const client = require('../../index.js');
 const discordTogether = new DiscordTogether(client);
@@ -11,21 +11,21 @@ module.exports = {
             .setName('atividade')
             .setDescription('selecionar atividade')
             .setRequired(true)
-            .addChoice('Youtube', 'youtube')
-            .addChoice('Poker', 'poker')
-            .addChoice('Xadrez', 'chess')
-            .addChoice('Damas', 'checkers')
-            .addChoice('Betrayal', 'betrayal')
-            .addChoice('Fishing.io', 'fishing')
-            .addChoice('Letter Tile', 'lettertile')
-            .addChoice('Words Snack', 'wordsnack')
-            .addChoice('Doodle Crew', 'doodlecrew')
-            .addChoice('SpellCast', 'spellcast')
-            .addChoice('Awkword', 'awkword')
-            .addChoice('Puttparty', 'puttparty')),
+            .addChoices({ name: 'Youtube', value: 'youtube' },
+                { name: 'Poker', value: 'poker' },
+                { name: 'Xadrez', value: 'chess' },
+                { name: 'Damas', value: 'checkers' },
+                { name: 'Betrayal', value: 'betrayal' },
+                { name: 'Fishing.io', value: 'fishing' },
+                { name: 'Letter Tile', value: 'lettertile' },
+                { name: 'Words Snack', value: 'wordsnack' },
+                { name: 'Doodle Crew', value: 'doodlecrew' },
+                { name: 'SpellCast', value: 'spellcast' },
+                { name: 'Awkword', value: 'awkword' },
+                { name: 'Puttparty', value: 'puttparty' })),
+
 
     async execute(interaction) {
-        if (interaction.options._hoistedOptions.length != 1) return
         if (interaction.channel.id != '775086769896554503') return await interaction.reply('Comando restrito a <#775086769896554503>')
         if (!interaction.member.voice.channel) return await interaction.reply('Entre em um canal de voz')
 

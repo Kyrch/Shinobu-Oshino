@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
 const ee = require('../../json/embed.json');
 const help = require('../../json/help.json');
 
@@ -10,17 +9,17 @@ module.exports = {
         .addStringOption(option => option
             .setName('comando')
             .setDescription('selecione um comando ou deixe em branco')
-            .addChoice('Activity', 'activity')
-            .addChoice('MudaeHelp', 'mudaehelp')
-            .addChoice('OldMembers', 'oldmembers')
-            .addChoice('Profile', 'profile')
-            .addChoice('Say', 'say')
-            .addChoice('Server-Info', 'server-info')
-            .addChoice('User-Info', 'user-info')),
+            .addChoices({ name: 'Activity', value: 'activity' },
+                { name: 'MudaeHelp', value: 'mudaehelp' },
+                { name: 'OldMembers', value: 'oldmembers' },
+                { name: 'Profile', value: 'profile' },
+                { name: 'Say', value: 'say' },
+                { name: 'Server-Info', value: 'server-info' },
+                { name: 'User-Info', value: 'user-info' })),
 
     async execute(interaction) {
 
-        const command = interaction.options.getString('comando')
+        const command = interaction.options.get('comando')?.value
         const user = interaction.user;
         const avatarVerify = user.avatarURL({
             dynamic: true,
@@ -34,24 +33,24 @@ module.exports = {
             var avatar = avatarVerify
         }
 
-        let embed = new MessageEmbed()
-            .setColor(`${ee.color}`)
+        let embed = new EmbedBuilder()
+            .setColor(ee.color)
             .setDescription("**Prefixo:** t!")
             .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: avatar })
             .setThumbnail(ee.avatar)
             .setTimestamp()
             .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
 
-        if (interaction.options._hoistedOptions.length == 0) {
+        if (command == undefined || command == null) {
             embed.setTitle(`${help.default.title}`)
-            embed.addField(`${help.default.field1.name}`, `${help.default.field1.value}`)
-            embed.addField(`${help.default.field2.name}`, `${help.default.field2.value}`)
+            embed.addFields([{ name: `${help.default.field1.name}`, value: `${help.default.field1.value}` }])
+            embed.addFields([{ name: `${help.default.field2.name}`, value: `${help.default.field2.value}` }])
         } else {
             embed.setTitle(`${help[command].title}`)
-            embed.addField("Sintaxe", `${help[command].sintaxe}`)
-            embed.addField("Aliases", `${help[command].aliases}`)
-            embed.addField("Função", `${help[command].funcao}`)
-            embed.addField("Permissões Necessárias", `${help[command].perms}`)
+            embed.addFields([{ name: "Sintaxe", value: `${help[command].sintaxe}` }])
+            embed.addFields([{ name: "Aliases", value: `${help[command].aliases}` }])
+            embed.addFields([{ name: "Função", value: `${help[command].funcao}` }])
+            embed.addFields([{ name: "Permissões Necessárias", value: `${help[command].perms}` }])
         }
 
         await interaction.reply({

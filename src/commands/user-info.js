@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { ButtonBuilder, ChannelType } = require("discord.js");
 const ee = require('../../json/embed.json');
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
             guild
         } = message
 
-        if (channel.type == "dm") return
+        if (channel.type == ChannelType.DM) return
         if (channel.id != '775086769896554503') return channel.send(`Comando restrito a <#775086769896554503>`)
 
         const user = mentions.users.first() || author;
@@ -45,7 +45,7 @@ module.exports = {
                 var statusVerify = status[memberGuild.presence.status]
             }
 
-            const exampleEmbed = new MessageEmbed()
+            const exampleEmbed = new ButtonBuilder()
                 .setColor('#58a0e7')
                 .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: `${avatar}` })
                 .setTitle(`**${user.tag}**`)

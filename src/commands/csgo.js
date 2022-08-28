@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { prefix } = require('../../json/config.json');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ee = require('../../json/embed.json');
 const axios = require('axios');
 
@@ -48,7 +48,7 @@ module.exports = {
             var avatar = avatarVerify
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor('#ffca00')
             .setAuthor({ name: `${user.tag}`, iconURL: `${avatar}` })
             .setTitle(`**${response.data.data.platformInfo.platformUserHandle}**`)

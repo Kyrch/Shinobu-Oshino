@@ -1,6 +1,7 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require("discord.js");
 const ee = require('../../json/embed.json');
 const { users } = require('../../json/config.json');
+const { ButtonStyle } = require('discord.js');
 
 module.exports = {
     name: 'desabaforegistro',
@@ -14,17 +15,17 @@ module.exports = {
 
         if (!users.includes(member.id)) return
 
-        let embed = new MessageEmbed()
-            .setColor(`${ee.color}`)
+        let embed = new EmbedBuilder()
+            .setColor(ee.color)
             .setDescription(`${descriptionDesabafo}`)
 
-        let row = new MessageActionRow()
+        let row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId('desabafo')
                     .setEmoji('💭')
                     .setLabel('Desabafo')
-                    .setStyle('SECONDARY')
+                    .setStyle(ButtonStyle.Secondary)
             )
 
         channel.send({

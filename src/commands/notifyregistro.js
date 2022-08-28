@@ -1,4 +1,4 @@
-const { MessageButton, MessageEmbed, MessageActionRow } = require("discord.js");
+const { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 const ee = require('../../json/embed.json');
 const { users } = require('../../json/config.json');
 
@@ -14,48 +14,48 @@ module.exports = {
 
         if (!users.includes(member.id)) return
 
-        const row1 = new MessageActionRow()
+        const row1 = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId('avisos')
                     .setEmoji('💛')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('eventos')
                     .setEmoji('💙')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('indicacoes')
                     .setEmoji('🤍')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('evento-atual')
                     .setEmoji('💚')
-                    .setStyle('SECONDARY'),
+                    .setStyle(ButtonStyle.Secondary),
             );
 
-        const row2 = new MessageActionRow()
+        const row2 = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId('mudaenotify')
                     .setEmoji('💖')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('sorteios')
                     .setEmoji('🧡')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('jogos-gratis')
                     .setEmoji('💜')
-                    .setStyle('SECONDARY'),
-                new MessageButton()
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
                     .setCustomId('faqnotifys')
                     .setEmoji('❔')
-                    .setStyle('PRIMARY'),
+                    .setStyle(ButtonStyle.Primary),
             );
 
 
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
             .setColor(ee.color)
             .setDescription(`**CARGOS DE NOTIFICAÇÕES**\n\nClique em "❔" para saber mais.`)
 
