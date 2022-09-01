@@ -19,7 +19,7 @@ module.exports = {
         const files = attachments.map(a => a.attachment)
         channel.send({
             content: `${args.join(' ')}`,
-            file: files
+            files: files
         })
     }
 }
