@@ -10,7 +10,6 @@ module.exports = {
         const list = new Set()
         const list2 = new Set()
         const col = interaction.guild.members.cache.mapValues(user => user.joinedAt)
-        console.log(interaction.guild.members)
 
         for (const [k, v] of col) {
             let array = { id: k, joined: v }

@@ -7,14 +7,19 @@ module.exports = {
 
         const {
             member,
-            channel
+            channel,
+            attachments
         } = message
 
         const adm = PermissionsBitField.Flags.Administrator
 
         if (!member.permissions.has(adm)) return
 
-        channel.send(`${args.join(' ')}`)
-        message.delete()
+        const files = attachments.map(a => a.attachment)
+        channel.send({
+            content: `${args.join(' ')}`,
+            files: files
+        })
+        
     }
 }
