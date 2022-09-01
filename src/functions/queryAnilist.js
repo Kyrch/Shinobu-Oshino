@@ -91,6 +91,17 @@ query ($search: String) {
     User(name: $search) {
       id
       name
+      favourites {
+        characters {
+          nodes {
+            name {
+              first
+              middle
+              last
+            }
+          }
+        }
+      }
       siteUrl
       avatar {
         large

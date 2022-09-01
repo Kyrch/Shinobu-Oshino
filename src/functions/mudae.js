@@ -81,10 +81,19 @@ const mudaewl = function mudaewl(animes) {
     return res
 }
 
+const mudaefav = function mudaefav(favourites) {
+    let string = ''
+    favourites.forEach((fav) => {
+        string += `${fav.name.first || ''} ${fav.name.middle || ''} ${fav.name.last || ''}` + '$'
+    })
+    return string
+}
+
 module.exports = {
     getArgs,
     mudaedl,
     mudaemm,
     mudaetop,
-    mudaewl
+    mudaewl,
+    mudaefav
 }

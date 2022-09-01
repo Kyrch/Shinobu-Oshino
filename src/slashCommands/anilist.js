@@ -1,26 +1,42 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
 const ee = require('../../json/embed.json');
 const { searchAPI, searchMedia } = require('../functions/anilist');
+const { mudaefav } = require('../functions/mudae');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('anilist')
         .setDescription('Busca no Anilist')
-        .addStringOption(option => option
-            .setName('tipo')
-            .setDescription('selecione o tipo de pesquisa')
-            .setRequired(true)
-            .addChoices({ name: 'Anime', value: 'anime' },
-                { name: 'Character', value: 'character' },
-                { name: 'Mangá', value: 'manga' },
-                { name: 'Staff', value: 'staff' },
-                { name: 'User', value: 'user' }))
-        .addStringOption(option => option
-            .setName('pesquisa')
-            .setDescription('digite o que deseja buscar')
-            .setRequired(true)),
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('mudae')
+                .setDescription('separa os favoritos por $')
+                .addStringOption(option => option.setName('username').setDescription('digite o nome de usuário').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('pesquisa')
+                .setDescription('busca um perfil no anilist')
+                .addStringOption(option => option
+                    .setName('tipo')
+                    .setDescription('selecione o tipo de pesquisa')
+                    .setRequired(true)
+                    .addChoices({ name: 'Anime', value: 'anime' },
+                        { name: 'Character', value: 'character' },
+                        { name: 'Mangá', value: 'manga' },
+                        { name: 'Staff', value: 'staff' },
+                        { name: 'User', value: 'user' }))
+                .addStringOption(option => option
+                    .setName('pesquisa')
+                    .setDescription('digite o que deseja buscar')
+                    .setRequired(true))),
 
     async execute(interaction) {
+        if (interaction.options._subcommand == 'mudae') {
+            search = await searchAPI(interaction.options.get('username').value, 'user')
+            favsModify = mudaefav(search.favourites.characters.nodes)
+            await interaction.reply({ content: favsModify })
+            return
+        }
 
         const type = interaction.options.get('tipo').value
         const query = interaction.options.get('pesquisa').value
@@ -75,20 +91,19 @@ module.exports = {
                 .setImage(`${search.image?.large}`)
                 .setTimestamp()
                 .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
-
         }
 
         if (type == 'user') {
+            console.log(search.favourites.characters.nodes)
             var embed = new EmbedBuilder()
                 .setColor(ee.color)
                 .setTitle(`${search.name}`)
                 .setDescription(`[${search.name}](${search.siteUrl})`)
-                .setImage(`${search.avatar?.large}`)
+                .setImage(`${search.avatar?.large || 'https://anilist.co/img/icons/icon.svg'}`)
                 .addFields([{ name: "Minutos Assistidos", value: `${search.statistics?.anime?.minutesWatched}` }])
                 .addFields([{ name: "Capítulos Lidos", value: `${search.statistics?.manga?.chaptersRead}` }])
                 .setTimestamp()
                 .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
-
         }
 
         try {
