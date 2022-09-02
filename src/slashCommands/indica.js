@@ -4,14 +4,14 @@ const ee = require('../../json/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('indica')
+        .setName('indicar')
         .setDescription('Sugere alguma mídia para a administração indicar')
         .setDMPermission(false),
     async execute(interaction) {
 
         let modal = new ModalBuilder()
             .setCustomId('modal-indica')
-            .setTitle('teste')
+            .setTitle('Indicação')
             .addComponents(
                 new ActionRowBuilder().addComponents(new TextInputBuilder()
                     .setCustomId('name-midia')
