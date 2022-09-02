@@ -50,5 +50,8 @@ Pesquisa informações de anime/manga/personagem/usuário/staff.
 **/csgo <username steam>**
 Busca informações do CSGO de um perfil steam.
 
+**/indicar**
+Sugere algo para a administração indicar em <#852931131824930816>
+
 **/oldmembers**
 Lista os 100 primeiros membros do servidor.`
