@@ -1,26 +1,25 @@
 require('dotenv').config();
-const { prefix } = require('../../json/config.json');
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const ee = require('../../json/embed.json');
 const axios = require('axios');
 
 module.exports = {
-    name: "csgo",
-    description: "Mostra os status equivalente a conta Steam",
-    aliases: ['cs-go'],
-    async execute(client, message, args) {
+    data: new SlashCommandBuilder()
+        .setName('csgo')
+        .setDescription('Mostra os status equivalente a conta Steam')
+        .setDMPermission(false)
+        .addStringOption(option => option
+            .setName('steam')
+            .setDescription('Insira seu ID ou link STEAM')
+            .setRequired(true)),
+    async execute(interaction) {
 
-        const {
-            member,
-            channel
-        } = message
-
-        if (args.length != 1) return channel.send(`<@!${member.id}>, use ${prefix}profile <id steam>`)
-        if (channel.id != '775086769896554503') return
+        if (interaction.channel.id != '775086769896554503') return
+        const name = interaction.options.get('steam').value
 
         try {
             var response = await axios.get(
-                `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/${args[0]}`,
+                `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/${name}`,
                 {
                     headers: {
                         "TRN-Api-Key": process.env.apiKeyCS
@@ -29,13 +28,13 @@ module.exports = {
             )
         } catch (err) {
             console.error(err)
-            channel.send(`<@!${member.id}>, insira um nome válido.`)
+            await interaction.reply({ content: `Insira um nome válido.`, ephemeral: true })
             return
         }
 
         const status = response.data.data.segments[0].stats
 
-        const user = message.author;
+        const user = interaction.user;
         const avatarVerify = user.avatarURL({
             dynamic: true,
             format: "png",
@@ -49,7 +48,7 @@ module.exports = {
         }
 
         const embed = new EmbedBuilder()
-            .setColor('#ffca00')
+            .setColor(ee.color)
             .setAuthor({ name: `${user.tag}`, iconURL: `${avatar}` })
             .setTitle(`**${response.data.data.platformInfo.platformUserHandle}**`)
             .setThumbnail(response.data.data.platformInfo.avatarUrl)
@@ -120,7 +119,7 @@ module.exports = {
             .setTimestamp()
             .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
 
-        channel.send({
+        await interaction.reply({
             embeds: [embed]
         })
     }
