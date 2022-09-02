@@ -28,17 +28,5 @@ module.exports = {
 
 
         await interaction.showModal(modal)
-        const info = await interaction.awaitModalSubmit({ time: 120000 })
-
-        if (info) {
-            try { await info.deferUpdate() } catch (err) {}
-            let name = info.fields.getTextInputValue('name-midia')
-            let sinopse = info.fields.getTextInputValue('sinopse-midia')
-            let link = info.fields.getTextInputValue('link-midia')
-            await info.followUp({ content: `**${name}** foi enviado à administração.`, ephemeral: true })
-
-            let channel = interaction.guild.channels.cache.find(c => c.id == '852696340264910898')
-            channel.send({ content: `**Nome:** ${name}\n\n**Sinopse:** ${sinopse}\n\n**Link:** ${link}\n\n**Indicado por:** <@!${info.user.id}>`})
-        }
     }
 }

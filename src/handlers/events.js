@@ -3,6 +3,7 @@ const fs = require('fs');
 const events = {
     "captcha.js": "interactionCreate",
     "messageCreate.js": "messageCreate",
+    "modalIndica.js": "interactionCreate",
     "msgCrosspost.js": "messageCreate",
     "newMember.js": "guildMemberAdd",
     "ready.js": "ready",
