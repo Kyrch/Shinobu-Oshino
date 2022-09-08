@@ -26,12 +26,13 @@ module.exports = {
 
 
     async execute(interaction) {
-        if (interaction.channel.id != '775086769896554503') return await interaction.reply('Comando restrito a <#775086769896554503>')
-        if (!interaction.member.voice.channel) return await interaction.reply('Entre em um canal de voz')
+        const { channel, member, options } = interaction
+        if (channel.id != '775086769896554503') return await interaction.reply('Comando restrito a <#775086769896554503>')
+        if (!member.voice.channel) return await interaction.reply('Entre em um canal de voz')
 
-        const activity = interaction.options.getString('atividade')
+        const activity = options.get('atividade').value
 
-        discordTogether.createTogetherCode(interaction.member.voice.channel.id, activity).then(async invite => {
+        discordTogether.createTogetherCode(member.voice.channel.id, activity).then(async invite => {
             return interaction.reply(`${invite.code}`)
         })
     }

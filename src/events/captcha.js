@@ -1,6 +1,6 @@
 const Captcha = require("@haileybot/captcha-generator");
 const { AttachmentBuilder, ActionRowBuilder, SelectMenuBuilder, EmbedBuilder } = require('discord.js');
-const ee = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     async createEvent(interaction) {
@@ -55,11 +55,11 @@ module.exports = {
 
             if (value == 'correct') {
                 var embedSucess = new EmbedBuilder()
-                    .setColor(ee.color)
+                    .setColor(color)
                     .setTitle("Captcha")
                     .setDescription("**Parabéns, agora você tem acesso ao servidor**")
                     .setTimestamp()
-                    .setFooter({ text: ee.footerText, iconURL: ee.footerIcon });
+                    .setFooter({ text: footerText, iconURL: footerIcon });
 
                 await m.reply({ embeds: [embedSucess], ephemeral: true });
                 var role = m.guild.roles.cache.find(role => role.id === '775145689146851369')
@@ -67,11 +67,11 @@ module.exports = {
 
             } else if (value == 'wrong') {
                 var embedFailed = new EmbedBuilder()
-                    .setColor(ee.color)
+                    .setColor(color)
                     .setTitle("Captcha")
                     .setDescription("**Parece que você errou o captcha, chame o comando novamente**")
                     .setTimestamp()
-                    .setFooter({ text: ee.footerText, iconURL: ee.footerIcon });
+                    .setFooter({ text: footerText, iconURL: footerIcon });
                 await m.reply({ embeds: [embedFailed], ephemeral: true });
             }
         })

@@ -1,16 +1,13 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
 module.exports = {
     name: 'corresgistro',
     description: 'cor',
-    execute(client, message, args) {
+    execute(client, message) {
 
-        const {
-            member,
-            channel
-        } = message
+        const { member, channel } = message
 
         if (!users.includes(member.id)) return
 
@@ -95,7 +92,7 @@ module.exports = {
             )
 
         let embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
             .setDescription('Escolha apenas **UMA** das cores abaixo.')
 
 

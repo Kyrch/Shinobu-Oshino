@@ -6,9 +6,7 @@ module.exports = {
     aliases: ['mh'],
     execute(client, message, args) {
 
-        const {
-            channel
-        } = message
+        const { channel } = message
 
         var response = getArgs(args, false)
         var choice = response[0]

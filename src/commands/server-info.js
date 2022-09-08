@@ -1,5 +1,5 @@
 const { EmbedBuilder, ChannelType } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     name: 'server-info',
@@ -7,11 +7,7 @@ module.exports = {
     aliases: ['serverinfo'],
     async execute(client, message, args) {
 
-        const {
-            channel,
-            guild,
-            guildId
-        } = message
+        const { channel, guild, guildId } = message
 
         if (channel.type == ChannelType.DM) return
         if (channel.id != '775086769896554503') return channel.send(`Comando restrito a <#775086769896554503>`)
@@ -59,7 +55,7 @@ module.exports = {
         const cvoice = channelVoice + channelStage
 
         const exampleEmbed = new EmbedBuilder()
-            .setColor('#58a0e7')
+            .setColor(color)
             .setAuthor({ name: `${guild.name}`, iconURL: `${avatarHere}` })
             .setThumbnail(avatarHere)
             .addFields({
@@ -108,7 +104,7 @@ module.exports = {
                 value: nowFeaturesHere
             })
             .setTimestamp()
-            .setFooter({ text: ee.footerText, iconURL: ee.footerIcon });
+            .setFooter({ text: footerText, iconURL: footerIcon });
 
         try {
             channel.send({

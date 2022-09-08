@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
 module.exports = {
@@ -7,10 +7,7 @@ module.exports = {
     description: 'animeregistro',
     execute(client, message, args) {
 
-        const {
-            member,
-            channel
-        } = message
+        const { member, channel } = message
 
         if (!users.includes(member.id)) return
 
@@ -97,7 +94,7 @@ module.exports = {
                 );
 
             let embed = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setDescription(`${descriptionMsg1}`)
 
             channel.send({
@@ -189,7 +186,7 @@ module.exports = {
                 );
 
             let embed = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setDescription(`${descriptionMsg2}`)
 
 
@@ -282,7 +279,7 @@ module.exports = {
                 );
 
             let embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
                 .setDescription(`${descriptionMsg3}`)
 
             channel.send({

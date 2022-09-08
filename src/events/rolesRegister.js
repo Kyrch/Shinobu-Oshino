@@ -1,11 +1,11 @@
 const { EmbedBuilder } = require("discord.js")
-const ee = require('../utils/embed.json')
+const { color, footerText, footerIcon } = require('../utils/embed.json')
 
 module.exports = {
     async createEvent(interaction) {
+        const { user, guild, member, customId } = interaction
         if (!interaction.isButton()) return
 
-        const user = interaction.user
         const avatarVerify = user.avatarURL({
             dynamic: true,
             format: "png",
@@ -48,11 +48,11 @@ module.exports = {
 
         if (descriptionFaq) {
             let embed = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: `${avatar}` })
                 .setDescription(`${descriptionFaq}`)
                 .setTimestamp()
-                .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+                .setFooter({ text: footerText, iconURL: footerIcon })
 
             await interaction.reply({
                 embeds: [embed],
@@ -61,7 +61,7 @@ module.exports = {
             return
         }
 
-        if (interaction.customId == 'faqanimes1' || interaction.customId == 'faqanimes2' || interaction.customId == 'faqanimes3') {
+        if (customId == 'faqanimes1' || customId == 'faqanimes2' || customId == 'faqanimes3') {
             await interaction.reply({
                 content: `Dúvidas? Pergunte a <@&775060539885092914>.`,
                 ephemeral: true
@@ -69,16 +69,16 @@ module.exports = {
             return
         }
 
-        const idrole = require('../utils/roles.json')[interaction.customId]
-        const role = interaction.guild.roles.cache.find(role => role.id === idrole)
+        const idrole = require('../utils/roles.json')[customId]
+        const role = guild.roles.cache.find(role => role.id === idrole)
 
         if (idrole && role) {
 
-            if (interaction.member._roles.includes(idrole)) {
-                interaction.member.roles.remove(role)
+            if (member._roles.includes(idrole)) {
+                member.roles.remove(role)
                 var ae = 'removido'
             } else {
-                interaction.member.roles.add(role)
+                member.roles.add(role)
                 var ae = 'adicionado'
             }
 

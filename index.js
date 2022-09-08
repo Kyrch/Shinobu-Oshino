@@ -1,9 +1,7 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Collection, IntentsBitField } = require('discord.js');
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
 
-const myIntents = new IntentsBitField();
-myIntents.add(GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMembers);
-const client = new Client({ intents: myIntents });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMembers] });
 module.exports = client
 
 client.commands = new Collection();

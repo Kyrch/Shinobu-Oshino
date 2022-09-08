@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { SlashCommandBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
-const ee = require('../utils/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()

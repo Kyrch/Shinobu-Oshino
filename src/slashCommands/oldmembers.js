@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const ee = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -141,12 +141,12 @@ lis = async (listMsg, pe, page, ID, interaction) => {
     }
 
     let embed = new EmbedBuilder()
-        .setColor(ee.color)
+        .setColor(color)
         .setAuthor({ name: `${user.tag}`, iconURL: `${avatar}` })
         .setTitle(`Old Members - Page ${page}/${pe.length}`)
         .setDescription(`${top} - <@!${id}>: ${join}\n${top2} - <@!${id2}>: ${join2}\n${top3} - <@!${id3}>: ${join3}\n${top4} - <@!${id4}>: ${join4}\n${top5} - <@!${id5}>: ${join5}\n${top6} - <@!${id6}>: ${join6}\n${top7} - <@!${id7}>: ${join7}\n${top8} - <@!${id8}>: ${join8}\n${top9} - <@!${id9}>: ${join9}\n${top10} - <@!${id10}>: ${join10}`)
         .setTimestamp()
-        .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+        .setFooter({ text: footerText, iconURL: footerIcon })
 
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()

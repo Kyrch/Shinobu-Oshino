@@ -1,5 +1,5 @@
 const { ButtonBuilder, ChannelType } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     name: 'user-info',
@@ -7,12 +7,7 @@ module.exports = {
     aliases: ['userinfo'],
     execute(client, message) {
 
-        const {
-            mentions,
-            author,
-            channel,
-            guild
-        } = message
+        const { mentions, author, channel, guild } = message
 
         if (channel.type == ChannelType.DM) return
         if (channel.id != '775086769896554503') return channel.send(`Comando restrito a <#775086769896554503>`)
@@ -46,7 +41,7 @@ module.exports = {
             }
 
             const exampleEmbed = new ButtonBuilder()
-                .setColor('#58a0e7')
+                .setColor(color)
                 .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: `${avatar}` })
                 .setTitle(`**${user.tag}**`)
                 .setThumbnail(avatar)
@@ -71,7 +66,7 @@ module.exports = {
                     value: `${statusVerify}`
                 })
                 .setTimestamp()
-                .setFooter({ text: ee.footerText, iconURL: ee.footerIcon });
+                .setFooter({ text: footerText, iconURL: footerIcon });
 
             try {
                 channel.send({

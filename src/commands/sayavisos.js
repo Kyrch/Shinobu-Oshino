@@ -6,10 +6,7 @@ module.exports = {
     aliases: ['avisos'],
     execute(client, message, args) {
 
-        const {
-            member,
-            attachments
-        } = message
+        const { member, attachments } = message
 
         const adm = PermissionsBitField.Flags.Administrator
 

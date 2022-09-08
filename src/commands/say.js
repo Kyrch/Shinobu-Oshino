@@ -5,10 +5,7 @@ module.exports = {
     description: 'say',
     execute(client, message, args) {
 
-        const {
-            member,
-            channel
-        } = message
+        const { member, channel } = message
 
         const adm = PermissionsBitField.Flags.Administrator
 

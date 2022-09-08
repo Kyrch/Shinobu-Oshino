@@ -1,16 +1,13 @@
 const { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
 module.exports = {
     name: 'notifyregistro',
     description: 'notify',
-    execute(client, message, args) {
+    execute(client, message) {
 
-        const {
-            member,
-            channel
-        } = message
+        const { member, channel } = message
 
         if (!users.includes(member.id)) return
 
@@ -56,7 +53,7 @@ module.exports = {
 
 
         let embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
             .setDescription(`**CARGOS DE NOTIFICAÇÕES**\n\nClique em "❔" para saber mais.`)
 
         

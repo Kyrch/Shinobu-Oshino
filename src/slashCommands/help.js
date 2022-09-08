@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
-const ee = require('../utils/embed.json');
+const { color, avatar, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -7,8 +7,8 @@ module.exports = {
         .setDescription('comando de ajuda'),
 
     async execute(interaction) {
-
-        const user = interaction.user;
+        const { user } = interaction
+        
         const avatarVerify = user.avatarURL({
             dynamic: true,
             format: "png",
@@ -22,13 +22,13 @@ module.exports = {
         }
 
         let embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
             .setTitle("COMANDOS")
             .setDescription(commands)
             .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: avatar })
-            .setThumbnail(ee.avatar)
+            .setThumbnail(avatar)
             .setTimestamp()
-            .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+            .setFooter({ text: footerText, iconURL: footerIcon })
 
 
         await interaction.reply({

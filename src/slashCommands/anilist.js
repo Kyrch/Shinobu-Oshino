@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const ee = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 const { searchAPI, searchMedia } = require('../functions/anilist');
 const { mudaefav } = require('../functions/mudae');
 
@@ -62,17 +62,17 @@ module.exports = {
             let idade = search.age || "Não revelado"
             let gender = gendersDefault[search.gender] || "Não revelado"
             var embed = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setTitle(`${name}`)
                 .setDescription(`[${name}](${search.siteUrl})\n\n**Idade:** ${idade}\n**Gênero:** ${gender}`)
                 .addFields([{ name: 'Favoritos', value: `${search.favourites}` }])
                 .setImage(`${search.image?.large}`)
 
             var embed2 = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setDescription(`${search.description.replace(/~!/g, "||").replace(/!~/g, "||")}`)
                 .setTimestamp()
-                .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+                .setFooter({ text: footerText, iconURL: footerIcon })
 
             try {
                 return await interaction.reply({
@@ -85,25 +85,25 @@ module.exports = {
 
         if (type == 'staff') {
             var embed = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setTitle(`${search.name?.first} ${search.name?.last}`)
                 .setDescription(`[${search.name?.first} ${search.name?.last}](${search.siteUrl})\n\n${search.description}`)
                 .setImage(`${search.image?.large}`)
                 .setTimestamp()
-                .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+                .setFooter({ text: footerText, iconURL: footerIcon })
         }
 
         if (type == 'user') {
             console.log(search.favourites.characters.nodes)
             var embed = new EmbedBuilder()
-                .setColor(ee.color)
+                .setColor(color)
                 .setTitle(`${search.name}`)
                 .setDescription(`[${search.name}](${search.siteUrl})`)
                 .setImage(`${search.avatar?.large || 'https://anilist.co/img/icons/icon.svg'}`)
                 .addFields([{ name: "Minutos Assistidos", value: `${search.statistics?.anime?.minutesWatched}` }])
                 .addFields([{ name: "Capítulos Lidos", value: `${search.statistics?.manga?.chaptersRead}` }])
                 .setTimestamp()
-                .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+                .setFooter({ text: footerText, iconURL: footerIcon })
         }
 
         try {
@@ -136,11 +136,11 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
 
 
     let embed = new EmbedBuilder()
-        .setColor(ee.color)
+        .setColor(color)
         .setTitle(`${titleRomaji} - Página ${page}/${pe.length}`)
         .setDescription(`[${titleEnglish}](${url}) (${format})`)
         .setThumbnail(`${img}`)
-        .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+        .setFooter({ text: footerText, iconURL: footerIcon })
 
     const seasonDefault = {
         WINTER: 'Winter',

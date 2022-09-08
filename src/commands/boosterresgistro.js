@@ -1,21 +1,18 @@
 const { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
 module.exports = {
     name: 'boosterregistro',
     description: 'booster',
-    execute(client, message, args) {
+    execute(client, message) {
 
-        const {
-            member,
-            channel
-        } = message
+        const { member, channel } = message
 
         if (!users.includes(member.id)) return
 
         let embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
             .setDescription(`${description}`)
 
 

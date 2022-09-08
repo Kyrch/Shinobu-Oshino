@@ -1,21 +1,15 @@
-const { ButtonBuilder, EmbedBuilder, ActionRowBuilder } = require("discord.js");
-const ee = require('../utils/embed.json');
+const { ButtonBuilder, ButtonStyle, EmbedBuilder, ActionRowBuilder } = require("discord.js");
+const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
-const { ButtonStyle } = require('discord.js');
 
 module.exports = {
     name: 'jogosregistro',
     description: 'jogos',
-    execute(client, message, args) {
+    execute(client, message) {
 
-        const {
-            member,
-            channel
-        } = message
+        const { member, channel } = message
 
         if (!users.includes(member.id)) return
-
-        const channelEdit = client.channels.cache.find(channel => channel.id == '854065444812881960')
 
         const row1 = new ActionRowBuilder()
             .addComponents(
@@ -100,7 +94,7 @@ module.exports = {
 
 
         let embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
             .setDescription(`**CARGOS DE JOGOS**\n\nQuais são os jogos que você joga?`)
 
 
@@ -108,7 +102,5 @@ module.exports = {
             embeds: [embed],
             components: [row1, row2, row3]
         })
-
-        //  channelEdit.messages.fetch('945499707952734289').then(msg => msg.edit({ embeds: [embed], components: [row1, row2, row3, row4] }))
     }
 }

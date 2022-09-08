@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const ee = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 const axios = require('axios');
 
 module.exports = {
@@ -48,7 +48,7 @@ module.exports = {
         }
 
         const embed = new EmbedBuilder()
-            .setColor(ee.color)
+            .setColor(color)
             .setAuthor({ name: `${user.tag}`, iconURL: `${avatar}` })
             .setTitle(`**${response.data.data.platformInfo.platformUserHandle}**`)
             .setThumbnail(response.data.data.platformInfo.avatarUrl)
@@ -117,7 +117,7 @@ module.exports = {
                 inline: true
             })
             .setTimestamp()
-            .setFooter({ text: ee.footerText, iconURL: ee.footerIcon })
+            .setFooter({ text: footerText, iconURL: footerIcon })
 
         await interaction.reply({
             embeds: [embed]
