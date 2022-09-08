@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js")
-const ee = require('../../json/embed.json')
+const ee = require('../utils/embed.json')
 
 module.exports = {
     async createEvent(interaction) {
@@ -69,7 +69,7 @@ module.exports = {
             return
         }
 
-        const idrole = require('../../json/roles.json')[interaction.customId]
+        const idrole = require('../utils/roles.json')[interaction.customId]
         const role = interaction.guild.roles.cache.find(role => role.id === idrole)
 
         if (idrole && role) {

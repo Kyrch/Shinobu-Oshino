@@ -1,5 +1,5 @@
 const { EmbedBuilder, ChannelType } = require("discord.js");
-const ee = require('../../json/embed.json');
+const ee = require('../utils/embed.json');
 
 module.exports = {
     name: 'server-info',

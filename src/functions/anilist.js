@@ -1,7 +1,7 @@
 const api = require('../anilist/api');
 const query = require('./queryAnilist');
 
-const searchAPI = async function searchAPI(searchArg, type) {
+const searchAPI = async (searchArg, type) => {
     const response = await api(query[type], {
         search: searchArg
     });
@@ -21,7 +21,7 @@ const searchAPI = async function searchAPI(searchArg, type) {
     return null
 }
 
-const searchMedia = async function searchMedia(searchArg, typeMedia) {
+const searchMedia = async (searchArg, typeMedia) => {
     const response = await api(query.media, {
         search: searchArg,
         type: typeMedia,

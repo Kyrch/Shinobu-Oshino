@@ -1,6 +1,6 @@
 const Captcha = require("@haileybot/captcha-generator");
 const { AttachmentBuilder, ActionRowBuilder, SelectMenuBuilder, EmbedBuilder } = require('discord.js');
-const ee = require('../../json/embed.json');
+const ee = require('../utils/embed.json');
 
 module.exports = {
     async createEvent(interaction) {

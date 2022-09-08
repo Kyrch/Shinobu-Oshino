@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const ee = require('../../json/embed.json');
+const ee = require('../utils/embed.json');
 const { searchAPI, searchMedia } = require('../functions/anilist');
 const { mudaefav } = require('../functions/mudae');
 

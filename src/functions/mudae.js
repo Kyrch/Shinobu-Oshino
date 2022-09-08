@@ -1,6 +1,6 @@
 const RegExpEmoji = /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g
 
-const getArgs = function getArgs(args, contextmenu) {
+const getArgs = (args, contextmenu) => {
     const choice = args[0]
     if (contextmenu == false) args.shift()
     var animes = args.slice(0).join(' ').replace(RegExpEmoji, '')
@@ -8,7 +8,7 @@ const getArgs = function getArgs(args, contextmenu) {
     return response = [choice, animes]
 }
 
-const mudaedl = function mudaedl(animes) {
+const mudaedl = (animes) => {
     let res = []
     var animesSpace = animes.replace(/\n/g, '')
     var corte = animesSpace.split(/[{)(}]/)
@@ -42,7 +42,7 @@ const mudaedl = function mudaedl(animes) {
     return res
 }
 
-const mudaemm = function mudaemm(animes) {
+const mudaemm = (animes) => {
     let res = []
     var animes = Array.from(animes)
     animes.forEach((item) => {
@@ -51,7 +51,7 @@ const mudaemm = function mudaemm(animes) {
     return res
 }
 
-const mudaetop = function mudaetop(animes) {
+const mudaetop = (animes) => {
     let res = []
     let i = 3
     var teste = false
@@ -72,7 +72,7 @@ const mudaetop = function mudaetop(animes) {
     return res
 }
 
-const mudaewl = function mudaewl(animes) {
+const mudaewl = (animes) => {
     let res = []
     var animes = Array.from(animes)
     animes.forEach((item) => {
@@ -81,7 +81,7 @@ const mudaewl = function mudaewl(animes) {
     return res
 }
 
-const mudaefav = function mudaefav(favourites) {
+const mudaefav = (favourites) => {
     let string = ''
     favourites.forEach((fav) => {
         string += `${fav.name.first || ''} ${fav.name.middle || ''} ${fav.name.last || ''}` + '$'

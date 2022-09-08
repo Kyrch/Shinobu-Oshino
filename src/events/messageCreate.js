@@ -1,7 +1,7 @@
 const { ChannelType } = require('discord.js');
 const {
     prefix
-} = require('../../json/config.json')
+} = require('../utils/config.json')
 
 module.exports = {
     createEvent(message, client) {

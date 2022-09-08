@@ -1,6 +1,6 @@
 const { ButtonBuilder, ActionRowBuilder, EmbedBuilder } = require("discord.js");
-const ee = require('../../json/embed.json');
-const { users } = require('../../json/config.json');
+const ee = require('../utils/embed.json');
+const { users } = require('../utils/config.json');
 const { ButtonStyle } = require('discord.js');
 
 module.exports = {
