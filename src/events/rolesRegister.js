@@ -42,10 +42,6 @@ module.exports = {
             var descriptionFaq = descriptionSpoiler
         }
 
-        if (interaction.customId == 'faqindicacoes') {
-            var descriptionFaq = descriptionIndica
-        }
-
         if (descriptionFaq) {
             let embed = new EmbedBuilder()
                 .setColor(color)
@@ -145,14 +141,3 @@ var descriptionSpoiler = `<#775150175114756106> - Canal livre dedicado a qualque
 
 **• Posso postar spoilers em outros canais?**
 Sim, desde que use a tag de spoiler fornecida pelo próprio discord. Para texto, use "\`||spoiler||\`".`
-
-var descriptionIndica = `<#852931131824930816> - Receba indicações de animes, mangás, novels, filmes, séries, etc.
-
-**• Como sou notificado?**
-Pegue o cargo <@&928784860217237514> em <#854065444812881960>.
-
-**• Posso fazer uma indicação?**
-Sim, analise os exemplos e mande para alguém da <@&775060539885092914>.
-
-**• Qual o período entre as indicações?**
-No mínimo 3 dias.`

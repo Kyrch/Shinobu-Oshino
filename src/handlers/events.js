@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const events = {
+    "buttons.js": "interactionCreate",
     "captcha.js": "interactionCreate",
     "messageCreate.js": "messageCreate",
     "modalIndica.js": "interactionCreate",
