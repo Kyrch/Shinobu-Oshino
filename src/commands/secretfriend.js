@@ -6,8 +6,6 @@ module.exports = {
     description: 'a',
     execute(client, message, args) {
 
-        if (message.user.id != '435919278164803586') return
-
         let embed = new EmbedBuilder()
             .setColor(color)
             .setDescription('Clique no botão para participar e siga o processo')

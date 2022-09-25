@@ -31,8 +31,10 @@ module.exports = {
             channelOrg.send({ content: `**Usuário:** <@!${user.id}>\n**Rua:** ${rua}\n**Complemento:** ${complement}\n**Bairro:** ${bairro}\n**CEP:** ${cep}\n**Cidade/Estado:** ${cityState}` })
 
             channelName.messages.fetch('1023643685180670022').then(m => {
-                let numb = parseInt(m.content.split(' -')[0])
-                m.edit({ content: `${m.content}\n${numb + 1} - <!${user.id}>`})
+                let msgContentSpace = m.content.split('\n')
+                let lastLine = msgContentSpace[msgContentSpace.length - 1]
+                let numb = parseInt(lastLine.split(' -')[0])
+                m.edit({ content: `${m.content}\n${numb + 1} - <@!${user.id}>`})
             })
         }
     }
