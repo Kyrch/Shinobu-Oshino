@@ -25,5 +25,39 @@ module.exports = {
 
             await interaction.showModal(modal)
         }
+
+        if (customId == 'button-modal-secretfriend') {
+            let modal = new ModalBuilder()
+                .setCustomId('modal-secret-friend-participants')
+                .setTitle('Amigo Secreto')
+                .addComponents(
+                    new ActionRowBuilder().addComponents(new TextInputBuilder()
+                        .setCustomId('ruanumber-secretfriend')
+                        .setLabel('Digite sua rua e número')
+                        .setStyle(TextInputStyle.Short)
+                        .setRequired(true)),
+                    new ActionRowBuilder().addComponents(new TextInputBuilder()
+                        .setCustomId('cep-secretfriend')
+                        .setLabel('Digite seu CEP')
+                        .setStyle(TextInputStyle.Short)
+                        .setRequired(true)),
+                    new ActionRowBuilder().addComponents(new TextInputBuilder()
+                        .setCustomId('complement-secretfriend')
+                        .setLabel('Digite seu complemento (se houver)')
+                        .setStyle(TextInputStyle.Short)
+                        .setRequired(false)),
+                    new ActionRowBuilder().addComponents(new TextInputBuilder()
+                        .setCustomId('bairro-secretfriend')
+                        .setLabel('Digite seu bairro')
+                        .setStyle(TextInputStyle.Short)
+                        .setRequired(true)),
+                    new ActionRowBuilder().addComponents(new TextInputBuilder()
+                        .setCustomId('citystate-secretfriend')
+                        .setLabel('Digite sua cidade e estado')
+                        .setStyle(TextInputStyle.Short)
+                        .setRequired(true)))
+
+            await interaction.showModal(modal)
+        }
     }
 }

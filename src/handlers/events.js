@@ -4,7 +4,7 @@ const events = {
     "buttons.js": "interactionCreate",
     "captcha.js": "interactionCreate",
     "messageCreate.js": "messageCreate",
-    "modalIndica.js": "interactionCreate",
+    "modals.js": "interactionCreate",
     "msgCrosspost.js": "messageCreate",
     "newMember.js": "guildMemberAdd",
     "ready.js": "ready",
