@@ -18,7 +18,7 @@ module.exports = {
             var args = String(separator)
         }
 
-        if (type.includes('TOP')) var args = args.replace('\n', '')
+        if (type.includes('top')) var args = args.replace('\n', '')
         var response = getArgs(args.split(' '), true)
         let res = []
 
@@ -27,7 +27,7 @@ module.exports = {
             res += mudaedl(response[1])
         }
 
-        if (type.includes('TOP')) {
+        if (type.includes('top')) {
             res += mudaetop(response[1])
         }
 

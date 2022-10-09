@@ -185,9 +185,7 @@ lis = async (listMsg, pe, page, ID, interaction) => {
     const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 })
 
     collector.on('collect', async inter => {
-        try {
-            await inter.deferUpdate()
-        } catch (err) { }
+        try { await inter.deferUpdate() } catch (err) { }
 
         if (inter.customId == `${ID}back`) {
             lis(listMsg, pe, page - 1, ID, inter)

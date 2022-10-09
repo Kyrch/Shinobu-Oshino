@@ -42,11 +42,11 @@ const mudaedl = (animes) => {
     return res
 }
 
-const mudaemm = (animes) => {
+const mudaemm = (list) => {
     let res = []
-    var animes = Array.from(animes)
-    animes.forEach((item) => {
-        res += item.replace('|', '').replace(RegExpEmoji, '').replace('\n', '$')
+    var list = Array.from(list)
+    list.forEach((character) => {
+        res += character.replace('|', '').replace(RegExpEmoji, '').replace('\n', '$')
     })
     return res
 }
@@ -57,13 +57,13 @@ const mudaetop = (animes) => {
     var teste = false
 
     if (animes.split(' - ')[1] !== undefined) {
-        res += animes.split(' - ')[1]
+        res += animes.split(' - ')[1].replace(/\*/g, "").trimEnd()
     } else return
 
     while (animes.split(' - ')[i] !== undefined && teste == false) {
 
         if (animes.split(' - ')[i] !== undefined) {
-            res += "$" + animes.split(' - ')[i]
+            res += "$" + animes.split(' - ')[i].replace(/\*/g, "").trimEnd()
             i += 2
         }
 
@@ -72,11 +72,11 @@ const mudaetop = (animes) => {
     return res
 }
 
-const mudaewl = (animes) => {
+const mudaewl = (characters) => {
     let res = []
-    var animes = Array.from(animes)
-    animes.forEach((item) => {
-        res += item.replace("\n", "$").replace(/_/gi, " ")
+    var characters = Array.from(characters)
+    characters.forEach((character) => {
+        res += character.replace("\n", "$").replace(/_/gi, " ").replace(/\*/g, "")
     })
     return res
 }
@@ -86,6 +86,7 @@ const mudaefav = (favourites) => {
     favourites.forEach((fav) => {
         string += `${fav.name.first || ''} ${fav.name.middle || ''} ${fav.name.last || ''}` + '$'
     })
+    string = string.replace(/( )+/g, " ").slice(0, -1)
     return string
 }
 
