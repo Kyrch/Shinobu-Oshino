@@ -1,4 +1,5 @@
 const { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -19,7 +20,7 @@ module.exports = {
         let row = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
-                    .setEmoji('🚀')
+                    .setEmoji(getEmojiCode('🚀'))
                     .setLabel('Seja Booster')
                     .setStyle(ButtonStyle.Link)
                     .setURL('https://support.discord.com/hc/pt-br/articles/360028038352-Server-Boosting-')

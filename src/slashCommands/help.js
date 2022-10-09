@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
-const { color, avatar, footerText, footerIcon } = require('../utils/embed.json');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()

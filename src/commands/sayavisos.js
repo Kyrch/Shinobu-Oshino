@@ -13,10 +13,8 @@ module.exports = {
         if (!member.permissions.has(adm)) return
 
         const channel = client.channels.cache.find(channel => channel.id == '775414286905770024')
-        const files = attachments.map(a => a.attachment)
-        channel.send({
-            content: `${args.join(' ')}`,
-            files: files
-        })
+        const files = attachments.map(a => a.attachment) || []
+
+        files == [] ? channel.send({ content: `${args.join(' ')}` }) : channel.send({content: `${args.join(' ')}`, files: files })  
     }
 }

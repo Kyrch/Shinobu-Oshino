@@ -1,4 +1,5 @@
 const { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
+const { getEmojiCode } = require('../functions/rest');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -22,7 +23,7 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('captcha')
-                    .setEmoji('🔐')
+                    .setEmoji(getEmojiCode('🔐'))
                     .setStyle(ButtonStyle.Primary)
             )
 

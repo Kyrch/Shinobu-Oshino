@@ -1,4 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -17,19 +18,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('boku-no-hero')
-                        .setEmoji('🦸')
+                        .setEmoji(getEmojiCode('🦸'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('boku-no-pico')
-                        .setEmoji('🍨')
+                        .setEmoji(getEmojiCode('🍨'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('chainsaw-man')
-                        .setEmoji('🪚')
+                        .setEmoji(getEmojiCode('🪚'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('youjitsu')
-                        .setEmoji('📚')
+                        .setEmoji(getEmojiCode('📚'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -37,19 +38,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('code-geass')
-                        .setEmoji('♟️')
+                        .setEmoji(getEmojiCode('♟️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('cowboy-bebop')
-                        .setEmoji('🚀')
+                        .setEmoji(getEmojiCode('🚀'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('death-note')
-                        .setEmoji('📓')
+                        .setEmoji(getEmojiCode('📓'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('detective-conan')
-                        .setEmoji('🕵️‍♂️')
+                        .setEmoji(getEmojiCode('🕵️‍♂️'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -57,19 +58,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('dragon-ball')
-                        .setEmoji('🌀')
+                        .setEmoji(getEmojiCode('🌀'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('evangelion')
-                        .setEmoji('👾')
+                        .setEmoji(getEmojiCode('👾'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('fate')
-                        .setEmoji('<:tohsakacool:775217629580754984>')
+                        .setEmoji(getEmojiCode('<:tohsakacool:775217629580754984>'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('fruits-basket')
-                        .setEmoji('🧺')
+                        .setEmoji(getEmojiCode('🧺'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -77,19 +78,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('fullmetal')
-                        .setEmoji('🧪')
+                        .setEmoji(getEmojiCode('🧪'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('gintama')
-                        .setEmoji('👘')
+                        .setEmoji(getEmojiCode('👘'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('grand-blue')
-                        .setEmoji('🏊‍♂️')
+                        .setEmoji(getEmojiCode('🏊‍♂️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('faqanimes1')
-                        .setEmoji('❔')
+                        .setEmoji(getEmojiCode('❔'))
                         .setStyle(ButtonStyle.Primary),
                 );
 
@@ -109,19 +110,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('gurren-lagann')
-                        .setEmoji('🤖')
+                        .setEmoji(getEmojiCode('🤖'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('haikyuu')
-                        .setEmoji('🏐')
+                        .setEmoji(getEmojiCode('🏐'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('houseki-no-kuni')
-                        .setEmoji('💎')
+                        .setEmoji(getEmojiCode('💎'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('hunter-x-hunter')
-                        .setEmoji('⛓️')
+                        .setEmoji(getEmojiCode('⛓️'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -129,19 +130,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('jojo')
-                        .setEmoji('💪')
+                        .setEmoji(getEmojiCode('💪'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('jujutsu-kaisen')
-                        .setEmoji('👁️')
+                        .setEmoji(getEmojiCode('👁️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('kaguya-sama')
-                        .setEmoji('💖')
+                        .setEmoji(getEmojiCode('💖'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('kimetsu-no-yaiba')
-                        .setEmoji('🌊')
+                        .setEmoji(getEmojiCode('🌊'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -149,19 +150,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('k-on')
-                        .setEmoji('🎸')
+                        .setEmoji(getEmojiCode('🎸'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('konosuba')
-                        .setEmoji('🌟')
+                        .setEmoji(getEmojiCode('🌟'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('love-live')
-                        .setEmoji('🎤')
+                        .setEmoji(getEmojiCode('🎤'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('madoka')
-                        .setEmoji('👧')
+                        .setEmoji(getEmojiCode('👧'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -169,19 +170,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('mob')
-                        .setEmoji('😐')
+                        .setEmoji(getEmojiCode('😐'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('monogatari')
-                        .setEmoji('✂️')
+                        .setEmoji(getEmojiCode('✂️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('monster')
-                        .setEmoji('<:gun2:775211091822903296>')
+                        .setEmoji(getEmojiCode('<:gun2:775211091822903296>'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('faqanimes2')
-                        .setEmoji('❔')
+                        .setEmoji(getEmojiCode('❔'))
                         .setStyle(ButtonStyle.Primary),
                 );
 
@@ -202,19 +203,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('mushoku-tensei')
-                        .setEmoji('🔮')
+                        .setEmoji(getEmojiCode('🔮'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('naruto')
-                        .setEmoji('🍃')
+                        .setEmoji(getEmojiCode('🍃'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('one-piece')
-                        .setEmoji('🏴‍☠️')
+                        .setEmoji(getEmojiCode('🏴‍☠️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('oregairu')
-                        .setEmoji('💜')
+                        .setEmoji(getEmojiCode('💜'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -222,19 +223,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('one-punch-man')
-                        .setEmoji('👊')
+                        .setEmoji(getEmojiCode('👊'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('oshi-no-ko')
-                        .setEmoji('🎭')
+                        .setEmoji(getEmojiCode('🎭'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('re-zero')
-                        .setEmoji('☠️')
+                        .setEmoji(getEmojiCode('☠️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('sangatsu-no-lion')
-                        .setEmoji('🦁')
+                        .setEmoji(getEmojiCode('🦁'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -242,19 +243,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('shingeki-no-kyojin')
-                        .setEmoji('🛡️')
+                        .setEmoji(getEmojiCode('🛡️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('spy-x-family')
-                        .setEmoji('🕴🏻')
+                        .setEmoji(getEmojiCode('🕴🏻'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('steins-gate')
-                        .setEmoji('⏱️')
+                        .setEmoji(getEmojiCode('⏱️'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('tokyo-ghoul')
-                        .setEmoji('<:kaneki:775469143343366164>')
+                        .setEmoji(getEmojiCode('<:kaneki:775469143343366164>'))
                         .setStyle(ButtonStyle.Secondary),
                 );
 
@@ -262,19 +263,19 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('tower-of-god')
-                        .setEmoji('🗼')
+                        .setEmoji(getEmojiCode('🗼'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('vinland-saga')
-                        .setEmoji('🚤')
+                        .setEmoji(getEmojiCode('🚤'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('neverland')
-                        .setEmoji('🧒')
+                        .setEmoji(getEmojiCode('🧒'))
                         .setStyle(ButtonStyle.Secondary),
                     new ButtonBuilder()
                         .setCustomId('faqanimes3')
-                        .setEmoji('❔')
+                        .setEmoji(getEmojiCode('❔'))
                         .setStyle(ButtonStyle.Primary),
                 );
 

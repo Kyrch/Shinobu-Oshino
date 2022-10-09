@@ -1,6 +1,7 @@
-const Captcha = require("@haileybot/captcha-generator");
 const { AttachmentBuilder, ActionRowBuilder, SelectMenuBuilder, EmbedBuilder } = require('discord.js');
+const { shuffleArray, shuffleString } = require('../functions/rest');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
+const Captcha = require("@haileybot/captcha-generator");
 
 module.exports = {
     async createEvent(interaction) {
@@ -76,17 +77,4 @@ module.exports = {
             }
         })
     }
-}
-
-sleep = async msec => {
-    return new Promise(resolve => setTimeout(resolve, msec));
-}
-
-function shuffleArray(inputArray) {
-    return inputArray.sort(() => Math.random() - 0.5);
-}
-
-function shuffleString() {
-    var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-    return letters.split('').sort(() => Math.random() - 0.5).join('').substring(0, 6)
 }

@@ -1,4 +1,5 @@
 const { ButtonBuilder, EmbedBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -15,19 +16,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('avisos')
-                    .setEmoji('💛')
+                    .setEmoji(getEmojiCode('💛'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('eventos')
-                    .setEmoji('💙')
+                    .setEmoji(getEmojiCode('💙'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('indicacoes')
-                    .setEmoji('🤍')
+                    .setEmoji(getEmojiCode('🤍'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('evento-atual')
-                    .setEmoji('💚')
+                    .setEmoji(getEmojiCode('💚'))
                     .setStyle(ButtonStyle.Secondary),
             );
 
@@ -35,19 +36,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('mudaenotify')
-                    .setEmoji('💖')
+                    .setEmoji(getEmojiCode('💖'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('sorteios')
-                    .setEmoji('🧡')
+                    .setEmoji(getEmojiCode('🧡'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('jogos-gratis')
-                    .setEmoji('💜')
+                    .setEmoji(getEmojiCode('💜'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('faqnotifys')
-                    .setEmoji('❔')
+                    .setEmoji(getEmojiCode('❔'))
                     .setStyle(ButtonStyle.Primary),
             );
 

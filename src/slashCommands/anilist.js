@@ -1,7 +1,8 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const { color, footerText, footerIcon } = require('../utils/embed.json');
+const { sleep, getEmojiCode } = require('../functions/rest');
 const { searchAPI, searchMedia } = require('../functions/anilist');
 const { mudaefav } = require('../functions/mudae');
+const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -168,22 +169,22 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
             .setCustomId(`${ID}fback`)
-            .setEmoji('⏪')
+            .setEmoji(getEmojiCode('⏪'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
         new ButtonBuilder()
             .setCustomId(`${ID}back`)
-            .setEmoji('◀️')
+            .setEmoji(getEmojiCode('◀️'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
         new ButtonBuilder()
             .setCustomId(`${ID}next`)
-            .setEmoji('▶️')
+            .setEmoji(getEmojiCode('▶️'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length),
         new ButtonBuilder()
             .setCustomId(`${ID}fnext`)
-            .setEmoji('⏩')
+            .setEmoji(getEmojiCode('⏩'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length)
     )
@@ -225,8 +226,4 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
             page = pe.length
         }
     });
-}
-
-sleep = async msec => {
-    return new Promise(resolve => setTimeout(resolve, msec));
 }

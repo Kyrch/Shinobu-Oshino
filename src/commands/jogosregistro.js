@@ -1,4 +1,5 @@
 const { ButtonBuilder, ButtonStyle, EmbedBuilder, ActionRowBuilder } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -15,19 +16,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('amongus')
-                    .setEmoji('<:amongus:944758103394615356>')
+                    .setEmoji(getEmojiCode('<:amongus:944758103394615356>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('amq')
-                    .setEmoji('<:amq:944758103574986823>')
+                    .setEmoji(getEmojiCode('<:amq:944758103574986823>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('csgo')
-                    .setEmoji('<:csgo:944758103524667403>')
+                    .setEmoji(getEmojiCode('<:csgo:944758103524667403>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('danganronpa')
-                    .setEmoji('<:danganronpa:944758103461752862>')
+                    .setEmoji(getEmojiCode('<:danganronpa:944758103461752862>'))
                     .setStyle(ButtonStyle.Secondary),
             );
 
@@ -35,19 +36,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('fortnite')
-                    .setEmoji('<:fortnite:966962979784515584>')
+                    .setEmoji(getEmojiCode('<:fortnite:966962979784515584>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('genshin')
-                    .setEmoji('<:genshin:944758103642079312>')
+                    .setEmoji(getEmojiCode('<:genshin:944758103642079312>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('llsifas')
-                    .setEmoji('<:llsifas:944758104262856764>')
+                    .setEmoji(getEmojiCode('<:llsifas:944758104262856764>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('lol')
-                    .setEmoji('<:lol:944758103558201344>')
+                    .setEmoji(getEmojiCode('<:lol:944758103558201344>'))
                     .setStyle(ButtonStyle.Secondary),
 
             );
@@ -56,19 +57,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('mudae')
-                    .setEmoji('<:mudae:944758104120229928>')
+                    .setEmoji(getEmojiCode('<:mudae:944758104120229928>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('osu')
-                    .setEmoji('<:osu:966962979805478982>')
+                    .setEmoji(getEmojiCode('<:osu:966962979805478982>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('poker')
-                    .setEmoji('<:poker:966962979549626391>')
+                    .setEmoji(getEmojiCode('<:poker:966962979549626391>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('rainbowsix')
-                    .setEmoji('<:r6:966962980401074236>')
+                    .setEmoji(getEmojiCode('<:r6:966962980401074236>'))
                     .setStyle(ButtonStyle.Secondary),
             );
 
@@ -76,19 +77,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('roblox')
-                    .setEmoji('<:roblox:944758103646285834>')
+                    .setEmoji(getEmojiCode('<:roblox:944758103646285834>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('rocket-league')
-                    .setEmoji('<:rocket-league:944758103423991829>')
+                    .setEmoji(getEmojiCode('<:rocket-league:944758103423991829>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('valorant')
-                    .setEmoji('<:vava:944758103520456784>')
+                    .setEmoji(getEmojiCode('<:vava:944758103520456784>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('faqjogos')
-                    .setEmoji('❔')
+                    .setEmoji(getEmojiCode('❔'))
                     .setStyle(ButtonStyle.Primary),
             );
 

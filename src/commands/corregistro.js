@@ -1,4 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -15,19 +16,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('amarelo')
-                    .setEmoji('<:amarelo:944732583357452288>')
+                    .setEmoji(getEmojiCode('<:amarelo:944732583357452288>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('azul-claro')
-                    .setEmoji('<:azulclaro:944730688144425063>')
+                    .setEmoji(getEmojiCode('<:azulclaro:944730688144425063>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('azul-escuro')
-                    .setEmoji('<:azulescuro:944730687720783882>')
+                    .setEmoji(getEmojiCode('<:azulescuro:944730687720783882>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('branco')
-                    .setEmoji('<:branco:944730687284609046>')
+                    .setEmoji(getEmojiCode('<:branco:944730687284609046>'))
                     .setStyle(ButtonStyle.Secondary),
             );
 
@@ -35,19 +36,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('cinza')
-                    .setEmoji('<:cinza:944730687670480906>')
+                    .setEmoji(getEmojiCode('<:cinza:944730687670480906>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('laranja')
-                    .setEmoji('<:laranja:944730687569788959>')
+                    .setEmoji(getEmojiCode('<:laranja:944730687569788959>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('lilas')
-                    .setEmoji('<:lilas:944730687842451536>')
+                    .setEmoji(getEmojiCode('<:lilas:944730687842451536>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('preto')
-                    .setEmoji('<:preto:944730687435604053>')
+                    .setEmoji(getEmojiCode('<:preto:944730687435604053>'))
                     .setStyle(ButtonStyle.Secondary),
             );
 
@@ -55,19 +56,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('rosa')
-                    .setEmoji('<:rosa:944730687720808529>')
+                    .setEmoji(getEmojiCode('<:rosa:944730687720808529>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('roxo')
-                    .setEmoji('<:roxo:944730687913754674>')
+                    .setEmoji(getEmojiCode('<:roxo:944730687913754674>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('verde-claro')
-                    .setEmoji('<:verdeclaro:944730687838224484>')
+                    .setEmoji(getEmojiCode('<:verdeclaro:944730687838224484>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('verde-escuro')
-                    .setEmoji('<:verdeescuro:944730687875973241>')
+                    .setEmoji(getEmojiCode('<:verdeescuro:944730687875973241>'))
                     .setStyle(ButtonStyle.Secondary),
             );
 
@@ -75,19 +76,19 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('vermelho')
-                    .setEmoji('<:vermelho:944730687427207249>')
+                    .setEmoji(getEmojiCode('<:vermelho:944730687427207249>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('vinho')
-                    .setEmoji('<:vinho:944746953776955392>')
+                    .setEmoji(getEmojiCode('<:vinho:944746953776955392>'))
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId('faqcolor')
-                    .setEmoji('❔')
+                    .setEmoji(getEmojiCode('❔'))
                     .setStyle(ButtonStyle.Primary),
                 new ButtonBuilder()
                     .setCustomId('corpersonalizada')
-                    .setEmoji('<:corpersonalizada:944744434904489984>')
+                    .setEmoji(getEmojiCode('<:corpersonalizada:944744434904489984>'))
                     .setStyle(ButtonStyle.Primary)
             )
 

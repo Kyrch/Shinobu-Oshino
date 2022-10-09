@@ -1,4 +1,5 @@
 const { ActionRowBuilder, ButtonStyle, ButtonBuilder, EmbedBuilder } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -19,7 +20,7 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('desabafo')
-                    .setEmoji('💭')
+                    .setEmoji(getEmojiCode('💭'))
                     .setLabel('Desabafo')
                     .setStyle(ButtonStyle.Secondary)
             )

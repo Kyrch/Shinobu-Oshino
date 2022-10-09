@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
+const { sleep, getEmojiCode } = require('../functions/rest');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
@@ -151,22 +152,22 @@ lis = async (listMsg, pe, page, ID, interaction) => {
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
             .setCustomId(`${ID}fback`)
-            .setEmoji('⏪')
+            .setEmoji(getEmojiCode('⏪'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
         new ButtonBuilder()
             .setCustomId(`${ID}back`)
-            .setEmoji('◀️')
+            .setEmoji(getEmojiCode('◀️'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == 1),
         new ButtonBuilder()
             .setCustomId(`${ID}next`)
-            .setEmoji('▶️')
+            .setEmoji(getEmojiCode('▶️'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length),
         new ButtonBuilder()
             .setCustomId(`${ID}fnext`)
-            .setEmoji('⏩')
+            .setEmoji(getEmojiCode('⏩'))
             .setStyle(ButtonStyle.Secondary)
             .setDisabled(page == pe.length)
     )
@@ -208,8 +209,4 @@ lis = async (listMsg, pe, page, ID, interaction) => {
             page = pe.length
         }
     });
-}
-
-sleep = async msec => {
-    return new Promise(resolve => setTimeout(resolve, msec));
 }

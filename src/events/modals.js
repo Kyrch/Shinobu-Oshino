@@ -30,7 +30,7 @@ module.exports = {
             let channelName = guild.channels.cache.find(c => c.id == '1023627890111283271')
             channelOrg.send({ content: `**Usuário:** <@!${user.id}>\n**Rua:** ${rua}\n**Complemento:** ${complement}\n**Bairro:** ${bairro}\n**CEP:** ${cep}\n**Cidade/Estado:** ${cityState}` })
 
-            channelName.messages.fetch('1023643685180670022').then(m => {
+            channelName.messages.fetch('1023646702122573965').then(m => {
                 let msgContentSpace = m.content.split('\n')
                 let lastLine = msgContentSpace[msgContentSpace.length - 1]
                 let numb = parseInt(lastLine.split(' -')[0])

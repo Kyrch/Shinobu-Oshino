@@ -1,4 +1,5 @@
 const { ButtonBuilder, ButtonStyle, ActionRowBuilder, EmbedBuilder } = require("discord.js");
+const { getEmojiCode } = require('../functions/rest');
 const { color } = require('../utils/embed.json');
 const { users } = require('../utils/config.json');
 
@@ -34,10 +35,6 @@ module.exports = {
             components: [row]
         })
     }
-}
-
-function getEmojiCode(emoji) {
-    return String.fromCodePoint("0x" + emoji.codePointAt(0).toString(16))
 }
 
 var description = `<:kannapeer:775355891326517249>  __**COMO FUNCIONA O SERVIDOR:**__
