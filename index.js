@@ -7,6 +7,7 @@ module.exports = client
 client.commands = new Collection();
 client.commandsSlash = new Collection();
 client.commandsMenu = new Collection();
+client.events = new Collection();
 
 ['commands', 'events'].forEach(handler => require(`./src/handlers/${handler}`)(client));
 

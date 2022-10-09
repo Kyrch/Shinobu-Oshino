@@ -17,6 +17,7 @@ module.exports = (client) => {
 
     for (let file of eventFiles) {
         let event = require(`../events/${file}`)
+        client.events.set(events[file], event)
         client.on(events[file], (data) => {
             event.createEvent(data, client)
         })

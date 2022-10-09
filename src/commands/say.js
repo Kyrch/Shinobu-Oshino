@@ -14,6 +14,5 @@ module.exports = {
         channel.send({
             content: `${args.join(' ')}`
         })
-        
     }
 }

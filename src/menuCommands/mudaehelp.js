@@ -18,7 +18,7 @@ module.exports = {
             var args = String(separator)
         }
 
-        if (type.includes('top')) var args = args.replace('\n', '')
+        args = type.includes('top') ? args.replace('\n', '') : args
         var response = getArgs(args.split(' '), true)
         let res = []
 

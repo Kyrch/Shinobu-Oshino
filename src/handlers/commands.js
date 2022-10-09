@@ -16,25 +16,23 @@ module.exports = async (client) => {
         else continue
     }
 
-    for (let fileS of slashFiles) {
-        let commandSlash = require(`../slashCommands/${fileS}`)
+    for (let file of slashFiles) {
+        let commandSlash = require(`../slashCommands/${file}`)
         client.commandsSlash.set(commandSlash.data.name, commandSlash)
         comma.push(commandSlash.data.toJSON())
     }
 
-    for (let fileM of menuFiles) {
-        let commandMenu = require(`../menuCommands/${fileM}`)
+    for (let file of menuFiles) {
+        let commandMenu = require(`../menuCommands/${file}`)
         client.commandsMenu.set(commandMenu.data.name, commandMenu);
         comma.push(commandMenu.data);
     }
 
     const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
     try {
-        console.log('Started refreshing application (/) commands.');
-
+        console.log('Loading application commands...');
         await rest.put(Routes.applicationCommands(process.env.ID_BOT), { body: comma });
-
-        console.log('Successfully reloaded application (/) commands.');
+        console.log('Application commands loaded');
     } catch (error) {
         console.error(error);
     }
