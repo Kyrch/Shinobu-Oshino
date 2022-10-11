@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
 const { sleep, getEmojiCode } = require('../functions/rest');
 const { searchAPI, searchMedia } = require('../anilist/anilist');
+const { getLinkAnimeThemes } = require('../anilist/animethemes');
 const { mudaefav } = require('../functions/mudae');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
 
@@ -117,8 +118,11 @@ module.exports = {
     }
 }
 
+var collectNum = 0;
+
 loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
 
+    let idAL = pe.slice(page - 1, page).map(a => a.id)
     let url = pe.slice(page - 1, page).map(a => a.siteUrl)
     let format = pe.slice(page - 1, page).map(a => a.format)
     let titleRomaji = pe.slice(page - 1, page).map(a => a.title.romaji)
@@ -138,10 +142,10 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
 
     let embed = new EmbedBuilder()
         .setColor(color)
-        .setTitle(`${titleRomaji} - Página ${page}/${pe.length}`)
+        .setTitle(`${titleRomaji}`)
         .setDescription(`[${titleEnglish}](${url}) (${format})`)
         .setThumbnail(`${img}`)
-        .setFooter({ text: footerText, iconURL: footerIcon })
+        .setFooter({ text: `Página ${page}/${pe.length}`, iconURL: footerIcon })
 
     const seasonDefault = {
         WINTER: 'Winter',
@@ -186,7 +190,12 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
             .setCustomId(`${ID}fnext`)
             .setEmoji(getEmojiCode('⏩'))
             .setStyle(ButtonStyle.Secondary)
-            .setDisabled(page == pe.length)
+            .setDisabled(page == pe.length),
+        new ButtonBuilder()
+            .setCustomId('animethemes')
+            .setEmoji(getEmojiCode("📺"))
+            .setStyle(ButtonStyle.Success)
+            .setDisabled(type == 'manga')
     )
 
     if (listMsg) await interaction.editReply({
@@ -198,32 +207,43 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
         components: [row]
     });
 
-    const filter = i => i.user.id === interaction.member.id
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 })
+    function createCollector() {
+        let collector = interaction.channel.createMessageComponentCollector({ time: 60000, max: 1 })
 
-    collector.on('collect', async inter => {
-        try {
-            await inter.deferUpdate()
-        } catch (err) { }
+        collector.on('collect', async inter => {
+            try { await inter.deferUpdate() } catch (err) { }
 
-        if (inter.customId == `${ID}back`) {
-            loadMsgMedia(listMsg, pe, page - 1, ID, inter)
-            page--
-        }
+            switch (inter.customId) {
 
-        if (inter.customId == `${ID}next`) {
-            loadMsgMedia(listMsg, pe, page + 1, ID, inter)
-            page++
-        }
+                case `${ID}back`:
+                    loadMsgMedia(listMsg, pe, page - 1, ID, inter)
+                    page--
+                    break;
 
-        if (inter.customId == `${ID}fback`) {
-            loadMsgMedia(listMsg, pe, 1, ID, inter)
-            page = 1
-        }
+                case `${ID}next`:
+                    loadMsgMedia(listMsg, pe, page + 1, ID, inter)
+                    page++
+                    break;
 
-        if (inter.customId == `${ID}fnext`) {
-            loadMsgMedia(listMsg, pe, pe.length, ID, inter)
-            page = pe.length
-        }
-    });
+                case `${ID}fback`:
+                    loadMsgMedia(listMsg, pe, 1, ID, inter)
+                    page = 1
+                    break;
+
+                case `${ID}fnext`:
+                    loadMsgMedia(listMsg, pe, pe.length, ID, inter)
+                    page = pe.length
+                    break;
+
+                case "animethemes":
+                    createCollector()
+                    let arrayThemes = await getLinkAnimeThemes(idAL[0])
+                    if (arrayThemes == null) return await inter.followUp({ content: "Ocorreu algum erro." })
+                    await inter.followUp({ content: `**Links AnimeThemes:**\n\n${arrayThemes.join('\n')}` })
+                    break;
+            }
+        });
+    }
+
+    createCollector()
 }

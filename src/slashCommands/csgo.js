@@ -2,6 +2,8 @@ require('dotenv').config();
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
 const axios = require('axios');
+const mongodb = require('../functions/mongodb');
+const User = mongodb.models.user;
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,11 +13,17 @@ module.exports = {
         .addStringOption(option => option
             .setName('steam')
             .setDescription('Insira seu ID ou link STEAM')
-            .setRequired(true)),
+            .setRequired(false)),
     async execute(interaction) {
+        const { user, options } = interaction
 
-        if (interaction.channel.id != '775086769896554503') return
-        const name = interaction.options.get('steam').value
+        if (options._hoistedOptions.length == 0) {
+            var name = await User.findOne({ idDiscord: user.id })
+            if (name == null) return await interaction.reply({ content: "Use \`/login steam\` para logar ou insira seu nome de usuário." })
+            name = name.steamName
+        } else {
+            name = options.get('steam').value
+        }
 
         try {
             var response = await axios.get(
@@ -34,7 +42,6 @@ module.exports = {
 
         const status = response.data.data.segments[0].stats
 
-        const user = interaction.user;
         const avatarVerify = user.avatarURL({
             dynamic: true,
             format: "png",
