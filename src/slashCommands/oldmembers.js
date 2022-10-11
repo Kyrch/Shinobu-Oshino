@@ -13,11 +13,11 @@ module.exports = {
         const col = interaction.guild.members.cache.mapValues(user => user.joinedAt)
 
         for (const [k, v] of col) {
-            let array = { id: k, joined: v }
-            list.add(array)
+            list.add({ id: k, joined: v })
         }
 
-        const arrayList = Array.from(list)
+        arrayList = Array.from(list)
+        list.clear()
         const org = arrayList.sort((a, b) => {
             if (a.joined > b.joined) {
                 return 1
@@ -33,54 +33,43 @@ module.exports = {
             let info = {
                 top: `${i + 1}`,
                 id: org[i].id,
-                joined: new Date(org[i].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined: new Date(org[i].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top2: `${i + 2}`,
                 id2: org[i + 1].id,
-                joined2: new Date(org[i + 1].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined2: new Date(org[i + 1].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top3: `${i + 3}`,
                 id3: org[i + 2].id,
-                joined3: new Date(org[i + 2].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined3: new Date(org[i + 2].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top4: `${i + 4}`,
                 id4: org[i + 3].id,
-                joined4: new Date(org[i + 3].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined4: new Date(org[i + 3].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top5: `${i + 5}`,
                 id5: org[i + 4].id,
-                joined5: new Date(org[i + 4].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined5: new Date(org[i + 4].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top6: `${i + 6}`,
                 id6: org[i + 5].id,
-                joined6: new Date(org[i + 5].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined6: new Date(org[i + 5].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top7: `${i + 7}`,
                 id7: org[i + 6].id,
-                joined7: new Date(org[i + 6].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined7: new Date(org[i + 6].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top8: `${i + 8}`,
                 id8: org[i + 7].id,
-                joined8: new Date(org[i + 7].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined8: new Date(org[i + 7].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top9: `${i + 9}`,
                 id9: org[i + 8].id,
-                joined9: new Date(org[i + 8].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                }),
+                joined9: new Date(org[i + 8].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+
                 top10: `${i + 10}`,
                 id10: org[i + 9].id,
-                joined10: new Date(org[i + 9].joined).toLocaleString("pt-BR", {
-                    timeZone: "America/Sao_Paulo"
-                })
+                joined10: new Date(org[i + 9].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
             }
             i += 10
             list2.add(info)

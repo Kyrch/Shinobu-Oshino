@@ -11,8 +11,6 @@ client.events = new Collection();
 
 ['commands', 'events'].forEach(handler => require(`./src/handlers/${handler}`)(client));
 
-client.on("error", () => {
-    console.log('error')
-})
+client.on("error", () => console.log('error'))
 
 client.login(process.env.DISCORD_TOKEN)
