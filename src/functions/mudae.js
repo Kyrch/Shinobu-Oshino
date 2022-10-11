@@ -2,7 +2,7 @@ const RegExpEmoji = /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD8
 
 const getArgs = (args, contextmenu) => {
     const choice = args[0]
-    if (contextmenu == false) args.shift()
+    contextmenu == false ? args.shift() : undefined
     var animes = args.slice(0).join(' ').replace(RegExpEmoji, '')
 
     return response = [choice, animes]
@@ -37,7 +37,7 @@ const mudaedl = (animes) => {
             i += 2
         }
 
-        if (k - 2 == 90) var valor = true
+        valor = k - 2 == 90 ? true : false
     }
     return res
 }
@@ -67,7 +67,7 @@ const mudaetop = (animes) => {
             i += 2
         }
 
-        if (i - 2 == 75) var teste = true
+        teste = i - 2 == 75 ? true : false
     }
     return res
 }

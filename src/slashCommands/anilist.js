@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
 const { sleep, getEmojiCode } = require('../functions/rest');
-const { searchAPI, searchMedia } = require('../functions/anilist');
+const { searchAPI, searchMedia } = require('../anilist/anilist');
 const { mudaefav } = require('../functions/mudae');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
 

@@ -1,10 +1,12 @@
-const { getArgs, mudaedl, mudaetop, mudaewl } = require('../functions/mudae')
+const { ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.js');
+const { getArgs, mudaedl, mudaetop, mudaewl } = require('../functions/mudae');
 
 module.exports = {
-    data: {
-        name: 'Mudae Help',
-        type: 3
-    },
+    data: new ContextMenuCommandBuilder()
+        .setName('Mudae Help')
+        .setType(ApplicationCommandType.Message)
+        .setDMPermission(false),
+
     async execute(interaction) {
 
         const message = interaction.options._hoistedOptions[0].message

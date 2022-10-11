@@ -1,4 +1,4 @@
-const api = require('../anilist/api');
+const api = require('./api');
 const query = require('./queryAnilist');
 
 const searchAPI = async (searchArg, type) => {
