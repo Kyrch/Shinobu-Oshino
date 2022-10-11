@@ -7,8 +7,8 @@ const getLinkAnimeThemes = async (id) => {
     if (response.status != 200) return null
 
     let links = []
-    response.data.anime[0].animethemes.forEach((item) => {
-        links.push(item.animethemeentries[0].videos[0].link)
+    response?.data?.anime[0]?.animethemes?.forEach((item) => {
+        links.push(item?.animethemeentries[0]?.videos[0]?.link)
     })
 
     return links

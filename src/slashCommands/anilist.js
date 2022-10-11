@@ -137,7 +137,7 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
     let chapters = pe.slice(page - 1, page).map(a => a.chapters)
     let volumes = pe.slice(page - 1, page).map(a => a.volumes)
     let status = pe.slice(page - 1, page).map(a => a.status)
-    let meanScore = pe.slice(page - 1, page).map(a => a.meanScore)
+    let meanScore = pe.slice(page - 1, page).map(a => a.meanScore) || "null"
 
 
     let embed = new EmbedBuilder()
@@ -168,7 +168,7 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
     }
 
     embed.addFields([{ name: 'Gêneros', value: `${genres}`, inline: false }])
-    embed.addFields([{ name: 'MeanScore', value: `${meanScore}`, inline: true }])
+    try { embed.addFields([{ name: 'MeanScore', value: `${meanScore}`, inline: true }]) } catch (err) { }
 
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
