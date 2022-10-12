@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const { sleep, getEmojiCode } = require('../functions/rest');
+const { getEmojiCode } = require('../functions/rest');
 const { searchAPI, searchMedia } = require('../anilist/anilist');
 const { getLinkAnimeThemes } = require('../anilist/animethemes');
 const { mudaefav } = require('../functions/mudae');
@@ -9,55 +9,41 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('anilist')
         .setDescription('Busca no Anilist')
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('mudae')
-                .setDescription('separa os favoritos por $')
+        .addSubcommand(sub =>sub.setName('mudae').setDescription('separa os favoritos por $')
                 .addStringOption(option => option.setName('username').setDescription('digite o nome de usuário').setRequired(true)))
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('pesquisa')
-                .setDescription('busca um perfil no anilist')
-                .addStringOption(option => option
-                    .setName('tipo')
-                    .setDescription('selecione o tipo de pesquisa')
-                    .setRequired(true)
+        .addSubcommand(sub =>sub.setName('pesquisa').setDescription('busca um perfil no anilist')
+                .addStringOption(opt => opt.setName('tipo').setDescription('selecione o tipo de pesquisa').setRequired(true)
                     .addChoices({ name: 'Anime', value: 'anime' },
                         { name: 'Character', value: 'character' },
                         { name: 'Mangá', value: 'manga' },
                         { name: 'Staff', value: 'staff' },
                         { name: 'User', value: 'user' }))
-                .addStringOption(option => option
-                    .setName('pesquisa')
-                    .setDescription('digite o que deseja buscar')
-                    .setRequired(true))),
+                .addStringOption(opt => opt.setName('pesquisa').setDescription('digite o que deseja buscar').setRequired(true))),
 
     async execute(interaction) {
-        if (interaction.options._subcommand == 'mudae') {
-            search = await searchAPI(interaction.options.get('username').value, 'user')
+        const { options, id } = interaction
+        if (options._subcommand == 'mudae') {
+            search = await searchAPI(options.get('username').value, 'user')
             favsModify = mudaefav(search.favourites.characters.nodes)
             await interaction.reply({ content: favsModify })
             return
         }
 
-        const type = interaction.options.get('tipo').value
-        const query = interaction.options.get('pesquisa').value
+        const type = options.get('tipo').value
+        const query = options.get('pesquisa').value
 
         if (type == 'anime' || type == 'manga') {
             results = await searchMedia(query, type.toUpperCase())
-            await interaction.reply({ content: '...', fetchReply: true })
-            const listMsg = await interaction.fetchReply()
-            await sleep(500)
-            loadMsgMedia(listMsg, results, 1, listMsg.id, interaction, type)
+            loadMsgMedia(false, results, 1, id, interaction, type)
             return
         }
 
         search = await searchAPI(query, type)
 
         if (type == 'character') {
-            let gendersDefault = {
-                Female: "Mulher",
-                Male: "Homem"
+            const gendersDefault = {
+                Female: "Feminino",
+                Male: "Masculino"
             }
 
             let name = `${search.name?.first} ${search.name?.last}`
@@ -96,7 +82,6 @@ module.exports = {
         }
 
         if (type == 'user') {
-            console.log(search.favourites.characters.nodes)
             var embed = new EmbedBuilder()
                 .setColor(color)
                 .setTitle(`${search.name}`)
@@ -130,14 +115,14 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
     let img = pe.slice(page - 1, page).map(a => a.coverImage.large)
     let favourites = pe.slice(page - 1, page).map(a => a.favourites)
     let genres = pe.slice(page - 1, page).map(a => a.genres.join(', '))
-    let startDate = pe.slice(page - 1, page).map(a => `${a.startDate.day}/${a.startDate.month}/${a.startDate.year}`) || "XX/XX/XXXX"
-    let endDate = pe.slice(page - 1, page).map(a => `${a.endDate.day}/${a.endDate.month}/${a.endDate.year}`) || "XX/XX/XXXX"
+    let startDate = pe.slice(page - 1, page).map(a => `${a.startDate.day || 'XX'}/${a.startDate.month || 'XX'}/${a.startDate.year || 'XX'}`) || "XX/XX/XXXX"
+    let endDate = pe.slice(page - 1, page).map(a => `${a.endDate.day || 'XX'}/${a.endDate.month || 'XX'}/${a.endDate.year || 'XX'}`) || "XX/XX/XXXX"
     let season = pe.slice(page - 1, page).map(a => a.season)
     let episodes = pe.slice(page - 1, page).map(a => a.episodes)
     let chapters = pe.slice(page - 1, page).map(a => a.chapters)
     let volumes = pe.slice(page - 1, page).map(a => a.volumes)
     let status = pe.slice(page - 1, page).map(a => a.status)
-    let meanScore = pe.slice(page - 1, page).map(a => a.meanScore) || "null"
+    let meanScore = pe.slice(page - 1, page).map(a => a.meanScore)
 
 
     let embed = new EmbedBuilder()
@@ -151,13 +136,21 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
         WINTER: 'Winter',
         SPRING: 'Spring',
         SUMMER: 'Summer',
-        FALL: 'Fall'
+        FALL: 'Fall',
+        not: "Não revelado"
     }
 
-    embed.addFields([{ name: 'Status', value: `${status}`, inline: false }])
+    const statusDefault = {
+        NOT_YET_RELEASED: "Não lançado",
+        FINISHED: "Finalizado",
+        RELEASING: "Lançando",
+        CANCELLED: "Cancelado"
+    }
+
+    embed.addFields([{ name: 'Status', value: `${statusDefault[status]}`, inline: false }])
     embed.addFields([{ name: 'Início', value: `${startDate}`, inline: true }])
     embed.addFields([{ name: 'Fim', value: `${endDate}`, inline: true }])
-    embed.addFields([{ name: 'Season', value: `${seasonDefault[season]}`, inline: true }])
+    embed.addFields([{ name: 'Season', value: `${seasonDefault[season[0] == null ? "not" : season]}`, inline: true }])
     embed.addFields([{ name: 'Favoritos', value: `${favourites}`, inline: true }])
 
     if (type == 'anime') {
@@ -168,7 +161,7 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
     }
 
     embed.addFields([{ name: 'Gêneros', value: `${genres}`, inline: false }])
-    try { embed.addFields([{ name: 'MeanScore', value: `${meanScore}`, inline: true }]) } catch (err) { }
+    try { embed.addFields([{ name: 'MeanScore', value: `${meanScore}%`, inline: true }]) } catch (err) { }
 
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -202,7 +195,7 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
         embeds: [embed],
         components: [row]
     })
-    else listMsg = await interaction.followUp({
+    else listMsg = await interaction.reply({
         embeds: [embed],
         components: [row]
     });

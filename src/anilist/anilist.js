@@ -5,7 +5,6 @@ const searchAPI = async (searchArg, type) => {
     const response = await api(query[type], {
         search: searchArg
     });
-    console.log(response)
 
     if (response.error) {
         return response;

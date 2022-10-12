@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const { sleep, getEmojiCode } = require('../functions/rest');
-const { color, footerText, footerIcon } = require('../utils/embed.json');
+const { getEmojiCode } = require('../functions/rest');
+const { color, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -74,11 +74,8 @@ module.exports = {
             i += 10
             list2.add(info)
         }
-        await interaction.reply({ content: '...', fetchReply: true })
-        const listMsg = await interaction.fetchReply()
-        await sleep(500)
         let pe = Array.from(list2)
-        lis(listMsg, pe, 1, listMsg.id, interaction)
+        lis(false, pe, 1, interaction.id, interaction)
         list2.clear()
     }
 }
@@ -133,10 +130,10 @@ lis = async (listMsg, pe, page, ID, interaction) => {
     let embed = new EmbedBuilder()
         .setColor(color)
         .setAuthor({ name: `${user.tag}`, iconURL: `${avatar}` })
-        .setTitle(`Old Members - Page ${page}/${pe.length}`)
+        .setTitle("Membros antigos")
         .setDescription(`${top} - <@!${id}>: ${join}\n${top2} - <@!${id2}>: ${join2}\n${top3} - <@!${id3}>: ${join3}\n${top4} - <@!${id4}>: ${join4}\n${top5} - <@!${id5}>: ${join5}\n${top6} - <@!${id6}>: ${join6}\n${top7} - <@!${id7}>: ${join7}\n${top8} - <@!${id8}>: ${join8}\n${top9} - <@!${id9}>: ${join9}\n${top10} - <@!${id10}>: ${join10}`)
         .setTimestamp()
-        .setFooter({ text: footerText, iconURL: footerIcon })
+        .setFooter({ text: `Página ${page}/${pe.length}`, iconURL: footerIcon })
 
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -165,7 +162,7 @@ lis = async (listMsg, pe, page, ID, interaction) => {
         embeds: [embed],
         components: [row]
     })
-    else listMsg = await interaction.followUp({
+    else listMsg = await interaction.reply({
         embeds: [embed],
         components: [row]
     });
@@ -176,24 +173,27 @@ lis = async (listMsg, pe, page, ID, interaction) => {
     collector.on('collect', async inter => {
         try { await inter.deferUpdate() } catch (err) { }
 
-        if (inter.customId == `${ID}back`) {
-            lis(listMsg, pe, page - 1, ID, inter)
-            page--
-        }
+        switch (inter.customId) {
 
-        if (inter.customId == `${ID}next`) {
-            lis(listMsg, pe, page + 1, ID, inter)
-            page++
-        }
+            case `${ID}back`:
+                lis(listMsg, pe, page - 1, ID, inter)
+                page--
+                break;
 
-        if (inter.customId == `${ID}fback`) {
-            lis(listMsg, pe, 1, ID, inter)
-            page = 1
-        }
+            case `${ID}next`:
+                lis(listMsg, pe, page + 1, ID, inter)
+                page++
+                break;
 
-        if (inter.customId == `${ID}fnext`) {
-            lis(listMsg, pe, pe.length, ID, inter)
-            page = pe.length
+            case `${ID}fback`:
+                lis(listMsg, pe, 1, ID, inter)
+                page = 1
+                break;
+
+            case `${ID}fnext`:
+                lis(listMsg, pe, pe.length, ID, inter)
+                page = pe.length
+                break;
         }
     });
 }
