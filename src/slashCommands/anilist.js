@@ -3,6 +3,7 @@ const { getEmojiCode } = require('../functions/rest');
 const { searchAPI, searchMedia } = require('../anilist/anilist');
 const { getLinkAnimeThemes } = require('../anilist/animethemes');
 const { mudaefav } = require('../functions/mudae');
+const { embedAnimeThemes } = require('../functions/embeds');
 const { color, footerText, footerIcon } = require('../utils/embed.json');
 
 module.exports = {
@@ -230,9 +231,9 @@ loadMsgMedia = async (listMsg, pe, page, ID, interaction, type) => {
 
                 case "animethemes":
                     createCollector()
-                    let arrayThemes = await getLinkAnimeThemes(idAL[0])
+                    let arrayThemes = await embedAnimeThemes(idAL[0])
                     if (arrayThemes == null) return await inter.followUp({ content: "Ocorreu algum erro." })
-                    await inter.followUp({ content: `**Links AnimeThemes:**\n\n${arrayThemes.join('\n')}` })
+                    await inter.followUp({ embeds: [arrayThemes] })
                     break;
             }
         });

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
 mongoose.connect(`mongodb+srv://kyrch:${process.env.passwordMongoDb}@cluster0.0dcxlve.mongodb.net/discord`).then(() => console.log('mongodb connected')).catch(err => console.error(err))
 const Schema = mongoose.Schema
 
