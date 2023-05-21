@@ -8,10 +8,10 @@ const activities = [
 
 module.exports = {
     async createEvent(client) {
-        console.log('Bot ready!')
-        client.user.setActivity({ type: ActivityType.Streaming, name: 'on Terra do Nunca' })
+        console.log('Bot ready!');
+        client.user.setActivity({ type: ActivityType.Streaming, name: 'on Terra do Nunca' });
         setInterval(() => {
-            const randomActivity = activities[Math.floor(Math.random() * activities.length)]
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
             const c = client.user.setPresence({
                 afk: false,
                 activities: [{
@@ -20,7 +20,7 @@ module.exports = {
                 }],
                 intents: [],
                 partials: [],
-            })
-        }, 3 * 60 * 1000)
+            });
+        }, 3 * 60 * 1000);
     }
 }

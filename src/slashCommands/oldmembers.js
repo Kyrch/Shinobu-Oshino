@@ -8,27 +8,27 @@ module.exports = {
         .setDescription('Mostra os membros mais antigos'),
 
     async execute(interaction) {
-        const list = new Set()
-        const list2 = new Set()
-        const col = interaction.guild.members.cache.mapValues(user => user.joinedAt)
+        const list = new Set();
+        const list2 = new Set();
+        const col = interaction.guild.members.cache.mapValues(user => user.joinedAt);
 
         for (const [k, v] of col) {
-            list.add({ id: k, joined: v })
+            list.add({ id: k, joined: v });
         }
 
-        arrayList = Array.from(list)
-        list.clear()
+        arrayList = Array.from(list);
+        list.clear();
         const org = arrayList.sort((a, b) => {
             if (a.joined > b.joined) {
-                return 1
+                return 1;
             }
             if (a.joined < b.joined) {
-                return -1
+                return -1;
             }
-            return 0
+            return 0;
         })
 
-        let i = 0
+        let i = 0;
         for (let k = 0; k < 10; k++) {
             let info = {
                 top: `${i + 1}`,
@@ -71,47 +71,47 @@ module.exports = {
                 id10: org[i + 9].id,
                 joined10: new Date(org[i + 9].joined).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
             }
-            i += 10
-            list2.add(info)
+            i += 10;
+            list2.add(info);
         }
-        let pe = Array.from(list2)
-        lis(false, pe, 1, interaction.id, interaction)
-        list2.clear()
+        let pe = Array.from(list2);
+        lis(false, pe, 1, interaction.id, interaction);
+        list2.clear();
     }
 }
 
 lis = async (listMsg, pe, page, ID, interaction) => {
 
-    let top = pe.slice(page - 1, page).map(a => a.top)
-    let id = pe.slice(page - 1, page).map(a => a.id)
-    let join = pe.slice(page - 1, page).map(a => a.joined)
-    let top2 = pe.slice(page - 1, page).map(a => a.top2)
-    let id2 = pe.slice(page - 1, page).map(a => a.id2)
-    let join2 = pe.slice(page - 1, page).map(a => a.joined2)
-    let top3 = pe.slice(page - 1, page).map(a => a.top3)
-    let id3 = pe.slice(page - 1, page).map(a => a.id3)
-    let join3 = pe.slice(page - 1, page).map(a => a.joined3)
-    let top4 = pe.slice(page - 1, page).map(a => a.top4)
-    let id4 = pe.slice(page - 1, page).map(a => a.id4)
-    let join4 = pe.slice(page - 1, page).map(a => a.joined4)
-    let top5 = pe.slice(page - 1, page).map(a => a.top5)
-    let id5 = pe.slice(page - 1, page).map(a => a.id5)
-    let join5 = pe.slice(page - 1, page).map(a => a.joined5)
-    let top6 = pe.slice(page - 1, page).map(a => a.top6)
-    let id6 = pe.slice(page - 1, page).map(a => a.id6)
-    let join6 = pe.slice(page - 1, page).map(a => a.joined6)
-    let top7 = pe.slice(page - 1, page).map(a => a.top7)
-    let id7 = pe.slice(page - 1, page).map(a => a.id7)
-    let join7 = pe.slice(page - 1, page).map(a => a.joined7)
-    let top8 = pe.slice(page - 1, page).map(a => a.top8)
-    let id8 = pe.slice(page - 1, page).map(a => a.id8)
-    let join8 = pe.slice(page - 1, page).map(a => a.joined8)
-    let top9 = pe.slice(page - 1, page).map(a => a.top9)
-    let id9 = pe.slice(page - 1, page).map(a => a.id9)
-    let join9 = pe.slice(page - 1, page).map(a => a.joined9)
-    let top10 = pe.slice(page - 1, page).map(a => a.top10)
-    let id10 = pe.slice(page - 1, page).map(a => a.id10)
-    let join10 = pe.slice(page - 1, page).map(a => a.joined10)
+    let top = pe.slice(page - 1, page).map(a => a.top);
+    let id = pe.slice(page - 1, page).map(a => a.id);
+    let join = pe.slice(page - 1, page).map(a => a.joined);
+    let top2 = pe.slice(page - 1, page).map(a => a.top2);
+    let id2 = pe.slice(page - 1, page).map(a => a.id2);
+    let join2 = pe.slice(page - 1, page).map(a => a.joined2);
+    let top3 = pe.slice(page - 1, page).map(a => a.top3);
+    let id3 = pe.slice(page - 1, page).map(a => a.id3);
+    let join3 = pe.slice(page - 1, page).map(a => a.joined3);
+    let top4 = pe.slice(page - 1, page).map(a => a.top4);
+    let id4 = pe.slice(page - 1, page).map(a => a.id4);
+    let join4 = pe.slice(page - 1, page).map(a => a.joined4);
+    let top5 = pe.slice(page - 1, page).map(a => a.top5);
+    let id5 = pe.slice(page - 1, page).map(a => a.id5);
+    let join5 = pe.slice(page - 1, page).map(a => a.joined5);
+    let top6 = pe.slice(page - 1, page).map(a => a.top6);
+    let id6 = pe.slice(page - 1, page).map(a => a.id6);
+    let join6 = pe.slice(page - 1, page).map(a => a.joined6);
+    let top7 = pe.slice(page - 1, page).map(a => a.top7);
+    let id7 = pe.slice(page - 1, page).map(a => a.id7);
+    let join7 = pe.slice(page - 1, page).map(a => a.joined7);
+    let top8 = pe.slice(page - 1, page).map(a => a.top8);
+    let id8 = pe.slice(page - 1, page).map(a => a.id8);
+    let join8 = pe.slice(page - 1, page).map(a => a.joined8);
+    let top9 = pe.slice(page - 1, page).map(a => a.top9);
+    let id9 = pe.slice(page - 1, page).map(a => a.id9);
+    let join9 = pe.slice(page - 1, page).map(a => a.joined9);
+    let top10 = pe.slice(page - 1, page).map(a => a.top10);
+    let id10 = pe.slice(page - 1, page).map(a => a.id10);
+    let join10 = pe.slice(page - 1, page).map(a => a.joined10);
 
 
     const user = interaction.user;
@@ -122,9 +122,9 @@ lis = async (listMsg, pe, page, ID, interaction) => {
     });
 
     if (avatarVerify === null) {
-        var avatar = "https://i.imgur.com/JdLLM92.png"
+        var avatar = "https://i.imgur.com/JdLLM92.png";
     } else {
-        var avatar = avatarVerify
+        var avatar = avatarVerify;
     }
 
     let embed = new EmbedBuilder()
@@ -133,7 +133,7 @@ lis = async (listMsg, pe, page, ID, interaction) => {
         .setTitle("Membros antigos")
         .setDescription(`${top} - <@!${id}>: ${join}\n${top2} - <@!${id2}>: ${join2}\n${top3} - <@!${id3}>: ${join3}\n${top4} - <@!${id4}>: ${join4}\n${top5} - <@!${id5}>: ${join5}\n${top6} - <@!${id6}>: ${join6}\n${top7} - <@!${id7}>: ${join7}\n${top8} - <@!${id8}>: ${join8}\n${top9} - <@!${id9}>: ${join9}\n${top10} - <@!${id10}>: ${join10}`)
         .setTimestamp()
-        .setFooter({ text: `Página ${page}/${pe.length}`, iconURL: footerIcon })
+        .setFooter({ text: `Página ${page}/${pe.length}`, iconURL: footerIcon });
 
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -167,32 +167,32 @@ lis = async (listMsg, pe, page, ID, interaction) => {
         components: [row]
     });
 
-    const filter = i => i.user.id === interaction.member.id
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 })
+    const filter = i => i.user.id === interaction.member.id;
+    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 });
 
     collector.on('collect', async inter => {
-        try { await inter.deferUpdate() } catch (err) { }
+        try { await inter.deferUpdate(); } catch (err) { }
 
         switch (inter.customId) {
 
             case `${ID}back`:
-                lis(listMsg, pe, page - 1, ID, inter)
-                page--
+                lis(listMsg, pe, page - 1, ID, inter);
+                page--;
                 break;
 
             case `${ID}next`:
-                lis(listMsg, pe, page + 1, ID, inter)
-                page++
+                lis(listMsg, pe, page + 1, ID, inter);
+                page++;
                 break;
 
             case `${ID}fback`:
-                lis(listMsg, pe, 1, ID, inter)
-                page = 1
+                lis(listMsg, pe, 1, ID, inter);
+                page = 1;
                 break;
 
             case `${ID}fnext`:
-                lis(listMsg, pe, pe.length, ID, inter)
-                page = pe.length
+                lis(listMsg, pe, pe.length, ID, inter);
+                page = pe.length;
                 break;
         }
     });

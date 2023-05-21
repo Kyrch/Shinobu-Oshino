@@ -3,8 +3,8 @@ const { color, footerText, footerIcon } = require('../utils/embed.json')
 
 module.exports = {
     async createEvent(interaction) {
-        const { user, guild, member, customId } = interaction
-        if (!interaction.isButton()) return
+        const { user, guild, member, customId } = interaction;
+        if (!interaction.isButton()) return;
 
         const avatarVerify = user.avatarURL({
             dynamic: true,
@@ -13,33 +13,33 @@ module.exports = {
         });
 
         if (avatarVerify === null) {
-            var avatar = "https'://i.imgur.com/JdLLM92.png"
+            var avatar = "https'://i.imgur.com/JdLLM92.png";
         } else {
-            var avatar = avatarVerify
+            var avatar = avatarVerify;
         }
 
         if (interaction.customId == 'corpersonalizada') {
             await interaction.reply({
                 content: "Quer uma cor personalizada? Dê uma olhada em <#852658210938945566>.",
                 ephemeral: true
-            })
-            return
+            });
+            return;
         }
 
         if (interaction.customId == 'faqcolor') {
-            var descriptionFaq = descriptionCor
+            var descriptionFaq = descriptionCor;
         }
 
         if (interaction.customId == 'faqjogos') {
-            var descriptionFaq = descriptionJogos
+            var descriptionFaq = descriptionJogos;
         }
 
         if (interaction.customId == 'faqnotifys') {
-            var descriptionFaq = descriptionNotifys
+            var descriptionFaq = descriptionNotifys;
         }
 
         if (interaction.customId == 'faqspoiler') {
-            var descriptionFaq = descriptionSpoiler
+            var descriptionFaq = descriptionSpoiler;
         }
 
         if (descriptionFaq) {
@@ -54,7 +54,7 @@ module.exports = {
                 embeds: [embed],
                 ephemeral: true
             })
-            return
+            return;
         }
 
         if (customId == 'faqanimes1' || customId == 'faqanimes2' || customId == 'faqanimes3') {
@@ -62,26 +62,26 @@ module.exports = {
                 content: `Dúvidas? Pergunte a <@&775060539885092914>.`,
                 ephemeral: true
             })
-            return
+            return;
         }
 
-        const idrole = require('../utils/roles.json')[customId]
-        const role = guild.roles.cache.find(role => role.id === idrole)
+        const idrole = require('../utils/roles.json')[customId];
+        const role = guild.roles.cache.find(role => role.id === idrole);
 
         if (idrole && role) {
 
             if (member._roles.includes(idrole)) {
-                member.roles.remove(role)
-                var ae = 'removido'
+                member.roles.remove(role);
+                var ae = 'removido';
             } else {
-                member.roles.add(role)
-                var ae = 'adicionado'
+                member.roles.add(role);
+                var ae = 'adicionado';
             }
 
             await interaction.reply({
                 content: `Cargo <@&${idrole}> foi ${ae}.`,
                 ephemeral: true
-            })
+            });
         }
     }
 }

@@ -13,13 +13,13 @@ const events = {
 }
 
 module.exports = (client) => {
-    const eventFiles = fs.readdirSync(`./src/events`).filter(file => file.endsWith('.js'))
+    const eventFiles = fs.readdirSync(`./src/events`).filter(file => file.endsWith('.js'));
 
     for (let file of eventFiles) {
-        let event = require(`../events/${file}`)
-        client.events.set(events[file], event)
+        let event = require(`../events/${file}`);
+        client.events.set(events[file], event);
         client.on(events[file], (data) => {
-            event.createEvent(data, client)
+            event.createEvent(data, client);
         })
     }
 }

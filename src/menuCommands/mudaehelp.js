@@ -9,38 +9,38 @@ module.exports = {
 
     async execute(interaction) {
 
-        const message = interaction.options._hoistedOptions[0].message
-        const type = message.embeds[0]?.data.author?.name?.toLowerCase().split(' ')
-        if (!type) return
-        var args = String(message.embeds[0].data.description)
+        const message = interaction.options._hoistedOptions[0].message;
+        const type = message.embeds[0]?.data.author?.name?.toLowerCase().split(' ');
+        if (!type) return;
+        var args = String(message.embeds[0].data.description);
 
         if (type.includes('disablelist')) {
-            var separator = args.split('\n\n')
-            separator.shift()
-            var args = String(separator)
+            var separator = args.split('\n\n');
+            separator.shift();
+            var args = String(separator);
         }
 
-        args = type.includes('top') ? args.replace('\n', '') : args
-        var response = getArgs(args.split(' '), true)
-        let res = []
+        args = type.includes('top') ? args.replace('\n', '') : args;
+        var response = getArgs(args.split(' '), true);
+        let res = [];
 
 
         if (type.includes('disablelist')) {
-            res += mudaedl(response[1])
+            res += mudaedl(response[1]);
         }
 
         if (type.includes('top')) {
-            res += mudaetop(response[1])
+            res += mudaetop(response[1]);
         }
 
         if (type.includes('wishlist')) {
-            res += mudaewl(response[1])
+            res += mudaewl(response[1]);
         }
 
         if (res && typeof res == 'string') {
-            await interaction.reply({ content: res })
+            await interaction.reply({ content: res });
         } else {
-            await interaction.reply({ content: 'Lista Inválida', ephemeral: true })
+            await interaction.reply({ content: 'Lista Inválida', ephemeral: true });
         }
     }
 }

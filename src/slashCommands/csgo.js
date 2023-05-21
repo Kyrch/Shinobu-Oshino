@@ -18,11 +18,11 @@ module.exports = {
         const { user, options } = interaction
 
         if (options._hoistedOptions.length == 0) {
-            var name = await User.findOne({ idDiscord: user.id })
-            if (name == null) return await interaction.reply({ content: "Use \`/login steam\` para logar ou insira seu nome de usuário." })
-            name = name.steamName
+            var name = await User.findOne({ idDiscord: user.id });
+            if (name == null) return await interaction.reply({ content: "Use \`/login steam\` para logar ou insira seu nome de usuário." });
+            name = name.steamName;
         } else {
-            name = options.get('steam').value
+            name = options.get('steam').value;
         }
 
         try {
@@ -33,14 +33,14 @@ module.exports = {
                         "TRN-Api-Key": process.env.apiKeyCS
                     }
                 }
-            )
+            );
         } catch (err) {
-            console.error(err)
-            await interaction.reply({ content: `Insira um nome válido.`, ephemeral: true })
-            return
+            console.error(err);
+            await interaction.reply({ content: `Insira um nome válido.`, ephemeral: true });
+            return;
         }
 
-        const status = response.data.data.segments[0].stats
+        const status = response.data.data.segments[0].stats;
 
         const avatarVerify = user.avatarURL({
             dynamic: true,
@@ -49,9 +49,9 @@ module.exports = {
         });
 
         if (avatarVerify === null) {
-            var avatar = "https://i.imgur.com/JdLLM92.png"
+            var avatar = "https://i.imgur.com/JdLLM92.png";
         } else {
-            var avatar = avatarVerify
+            var avatar = avatarVerify;
         }
 
         const embed = new EmbedBuilder()
@@ -124,10 +124,10 @@ module.exports = {
                 inline: true
             })
             .setTimestamp()
-            .setFooter({ text: footerText, iconURL: footerIcon })
+            .setFooter({ text: footerText, iconURL: footerIcon });
 
         await interaction.reply({
             embeds: [embed]
-        })
+        });
     }
 }

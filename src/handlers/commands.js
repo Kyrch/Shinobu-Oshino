@@ -5,25 +5,25 @@ const fs = require('fs');
 module.exports = async (client) => {
 
     let comma = []
-    let commandFiles = fs.readdirSync('./src/commands').filter(folder => folder.endsWith('.js'))
-    let slashFiles = fs.readdirSync('./src/slashCommands').filter(file => file.endsWith('.js'))
-    let menuFiles = fs.readdirSync('./src/menuCommands').filter(fileM => fileM.endsWith('.js'))
+    let commandFiles = fs.readdirSync('./src/commands').filter(folder => folder.endsWith('.js'));
+    let slashFiles = fs.readdirSync('./src/slashCommands').filter(file => file.endsWith('.js'));
+    let menuFiles = fs.readdirSync('./src/menuCommands').filter(fileM => fileM.endsWith('.js'));
 
 
     for (let file of commandFiles) {
-        let commands = require(`../commands/${file}`)
+        let commands = require(`../commands/${file}`);
         if (commands.name) client.commands.set(commands.name, commands);
         else continue
     }
 
     for (let file of slashFiles) {
-        let commandSlash = require(`../slashCommands/${file}`)
-        client.commandsSlash.set(commandSlash.data.name, commandSlash)
-        comma.push(commandSlash.data.toJSON())
+        let commandSlash = require(`../slashCommands/${file}`);
+        client.commandsSlash.set(commandSlash.data.name, commandSlash);
+        comma.push(commandSlash.data.toJSON());
     }
 
     for (let file of menuFiles) {
-        let commandMenu = require(`../menuCommands/${file}`)
+        let commandMenu = require(`../menuCommands/${file}`);
         client.commandsMenu.set(commandMenu.data.name, commandMenu);
         comma.push(commandMenu.data);
     }
@@ -34,6 +34,6 @@ module.exports = async (client) => {
         await rest.put(Routes.applicationCommands(process.env.ID_BOT), { body: comma });
         console.log('Application commands loaded');
     } catch (error) {
-        console.error(error);
+        console.error(error, 'error');
     }
 }

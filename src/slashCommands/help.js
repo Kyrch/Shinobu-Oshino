@@ -7,7 +7,7 @@ module.exports = {
         .setDescription('comando de ajuda'),
 
     async execute(interaction) {
-        const { user } = interaction
+        const { user } = interaction;
         
         const avatarVerify = user.avatarURL({
             dynamic: true,
@@ -16,9 +16,9 @@ module.exports = {
         });
 
         if (avatarVerify === null) {
-            var avatar = "https://i.imgur.com/Xlm8eDA.png"
+            var avatar = "https://i.imgur.com/Xlm8eDA.png";
         } else {
-            var avatar = avatarVerify
+            var avatar = avatarVerify;
         }
 
         let embed = new EmbedBuilder()
@@ -28,13 +28,13 @@ module.exports = {
             .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: avatar })
             .setThumbnail(avatar)
             .setTimestamp()
-            .setFooter({ text: footerText, iconURL: footerIcon })
+            .setFooter({ text: footerText, iconURL: footerIcon });
 
 
         await interaction.reply({
             embeds: [embed],
             ephemeral: true
-        })
+        });
     }
 }
 

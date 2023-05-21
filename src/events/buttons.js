@@ -2,8 +2,8 @@ const { ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = req
 
 module.exports = {
     async createEvent(interaction) {
-        if (!interaction.isButton()) return
-        const { customId } = interaction
+        if (!interaction.isButton()) return;
+        const { customId } = interaction;
 
         if (customId == 'button-modal-indica') {
             let modal = new ModalBuilder()
@@ -23,7 +23,7 @@ module.exports = {
                         .setLabel('Qual o link no anilist?')
                         .setStyle(TextInputStyle.Short)))
 
-            await interaction.showModal(modal)
+            await interaction.showModal(modal);
         }
 
         if (customId == 'button-modal-secretfriend') {
@@ -57,7 +57,7 @@ module.exports = {
                         .setStyle(TextInputStyle.Short)
                         .setRequired(true)))
 
-            await interaction.showModal(modal)
+            await interaction.showModal(modal);
         }
     }
 }

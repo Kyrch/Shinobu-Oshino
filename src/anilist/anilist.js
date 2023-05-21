@@ -18,7 +18,7 @@ const searchAPI = async (searchArg, type) => {
         case 'user':
             return response.User
     }
-    return null
+    return null;
 }
 
 const searchMedia = async (searchArg, typeMedia) => {
@@ -29,7 +29,7 @@ const searchMedia = async (searchArg, typeMedia) => {
         perPage: 5,
     });
 
-    return response.Page.media
+    return response.Page.media;
 }
 
 module.exports = {
